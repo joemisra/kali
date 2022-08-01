@@ -1,6 +1,6 @@
 # kali
 
-![kbaliwakeup-7 png](https://user-images.githubusercontent.com/326734/182260834-f0c1d9d8-c1e7-4b72-9c76-34bc07e4fb91.png)
+![kbaliwakeup-7](https://user-images.githubusercontent.com/326734/182261061-2471d0ba-7678-4e46-93a4-f95b2bcd2673.png)
 
 dsp.coffee kali 1.x firmware!
 
