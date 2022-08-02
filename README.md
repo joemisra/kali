@@ -4,12 +4,20 @@
 
 dsp.coffee kali 1.x firmware!
 
-to install
+to install 
 
 **keep eurorack power off while using usb** 
 
-* don't plug into your computer yet, plug micro-usb cable into daisy patch submodule, now hold boot button while plugging it into your computer (you can also do this when already plugged in by holding the boot button and then pressing the reset button)
+* Download most recent Kali firmware from this repository.
 
-* use the electrosmith daisy web programmer https://electro-smith.github.io/Programmer/ to flash the new firmware. if it was successful, kali will reboot and the screen will turn back on. you should see some activity there, but lfo outputs will not be active until it's back on eurorack power.
+* In a Chrome browser window, navigate to the [Electrosmith Web Programmer](https://electro-smith.github.io/Programmer/)
 
-* unplug it from usb before trying eurorack power.
+* Once there, connect the Daisy Patch Submodule on the back of Kali to your computer using a micro USB cable. 
+
+* Put the Daisy into flashable mode by holding down the BOOT button, and pressing the RESET button. Once you release the RESET button you can let go of the BOOT button (You'll know you performed the button combo correctly if the USER LED on your Daisy stops flashing)
+
+* Connect Daisy as a DFU device by clicking the "Connect" button at the top of the Web Programmer page
+
+* In the dialog box that opens, select "DFU in FS Mode" and then click "Connect"
+
+* Unzip the kali________.zip you downloaded, near the bottom of the programmer page will be an option to select a file from your computer, choose Kali.bin from the unzipped archive.
