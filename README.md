@@ -6,6 +6,10 @@ For detailed information please check the KALI Wiki:
 
 https://github.com/joemisra/kali/wiki
 
+Or join the dsp.coffee dev Discord server:
+
+https://discord.gg/KxttAMc9tw
+
 ## Firmware!
 
 ### Update 
