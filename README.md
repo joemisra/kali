@@ -2,6 +2,10 @@
 
 ![kbaliwakeup-7](https://user-images.githubusercontent.com/326734/182261061-2471d0ba-7678-4e46-93a4-f95b2bcd2673.png)
 
+For detailed information please check the KALI Wiki:
+
+https://github.com/joemisra/kali/wiki
+
 ## Firmware!
 
 ### Update 
