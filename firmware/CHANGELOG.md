@@ -1,4 +1,4 @@
-### 20220907
+### 20220907 (0.9-14-a4282b2d)
 * Changed: LFO edit now has multipliers & dividers, multiplies by default.
 * Changed: LFOs no longer have an automatic multiplier assigned (used to go in
   sequence x1,x2,x3,x4,x5,x6)
