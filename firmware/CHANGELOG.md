@@ -1,4 +1,4 @@
-### 20220908 (Upcoming)
+### 20220908 (0.92-1)
 * Added: LFO Adjust now used on a per LFO basis in LFO editor, *currently LFO adjust will have no effect on main page*.
 * Added: Pulsewidth for KaliOscillator, only used w/ square and polyblep square.
 * Added: LFO Settings now save on exiting LFO Edit.
