@@ -2,6 +2,7 @@
 * Added: LFO Adjust now used on a per LFO basis in LFO editor, *currently LFO adjust will have no effect on main page*.
 * Added: Pulsewidth for KaliOscillator, only used w/ square and polyblep square.
 * Added: LFO Settings now save on exiting LFO Edit.
+* Added: LFO Raw mode (sends constant voltage, set by lfo adjust knob)
  
 ### 20220907 (0.9-14-a4282b2d)
 * Changed: LFO edit now has multipliers & dividers, multiplies by default.
