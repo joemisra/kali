@@ -1,8 +1,11 @@
-### 20220908 (0.92-1)
+### 20220908 (0.96-1-af371b80)
 * Added: LFO Adjust now used on a per LFO basis in LFO editor, *currently LFO adjust will have no effect on main page*.
 * Added: Pulsewidth for KaliOscillator, only used w/ square and polyblep square.
 * Added: LFO Settings now save on exiting LFO Edit.
+* Added: Options saved to flash incl lfo adjust & multiplier/divider.
 * Added: LFO Raw mode (sends constant voltage, set by lfo adjust knob)
+* Added: LFO Random Reset mode (lfo adjust knob = probability)
+* Added: LFO Random Shape mode (lfo adjust knob = number of cycles before randomize)
  
 ### 20220907 (0.9-14-a4282b2d)
 * Changed: LFO edit now has multipliers & dividers, multiplies by default.
