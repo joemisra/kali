@@ -18,7 +18,7 @@ https://discord.gg/KxttAMc9tw
 
 * [Download most recent Kali firmware from this repository](https://github.com/joemisra/kali/tree/main/firmware).
 
-* In a Chrome browser window, navigate to the [Electrosmith Web Programmer](https://electro-smith.github.io/Programmer/)
+* In a Chrome browser window, navigate to the [Electrosmith Web Programmer](https://electro-smith.github.io/Programmer/). This will not work in Safari.
 
 * Once there, while holding down the BOOT button (circled below) connect the Daisy Patch Submodule on the back of Kali to your computer using a micro USB cable.
 
