@@ -1,3 +1,8 @@
+### 20220911 (0.97-1-aca219b9)
+* Added: LFO Sidechain Mode - LFO amplitude is compressed/ducks in response to
+  audio input.
+* Fix: Increased knob smoothing for LFO Rate (was in some cases causing global multiplier to
+  jump around = noisy LFO)
 
 ### 20220910 (0.96-2-a7ac710f)
 * Changed: Sync improvements for LFOs when clocked by an external source.
