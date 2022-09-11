@@ -1,3 +1,7 @@
+
+### 20220910 (0.96-2-a7ac710f)
+* Changed: Sync improvements for LFOs when clocked by an external source.
+
 ### 20220908 (0.96-1-af371b80)
 * Added: LFO Adjust now used on a per LFO basis in LFO editor, *currently LFO adjust will have no effect on main page*.
 * Added: Pulsewidth for KaliOscillator, only used w/ square and polyblep square.
