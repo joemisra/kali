@@ -1,3 +1,7 @@
+### 20220918 (0.97-2-qe258fc9)
+* Fixed: Chorus Meta1 knob was causing noise.
+* Improved: Tweaked Chorus algorithm.
+
 ### 20220911 (0.97-1-aca219b9)
 * Added: LFO Sidechain Mode - LFO amplitude is compressed/ducks in response to
   audio input.
