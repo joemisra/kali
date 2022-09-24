@@ -1,3 +1,8 @@
+
+### 20220924 (0.97-3-qd46034f)
+* Fixed: Typo in parvati/shards mode.
+* Trial feature: Internal CV out scaling (calibration, sort of).
+
 ### 20220918 (0.97-2-qe258fc9)
 * Fixed: Chorus Meta1 knob was causing noise.
 * Improved: Tweaked Chorus algorithm.
