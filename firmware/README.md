@@ -1,6 +1,9 @@
+### 20221001 (0.97-6-q950b1df)
+* Fix: For 'Shards' and 'Splat' mode, switched from ReadHermite to Read (delay
+  read interpolation, was having glitch/stuttering issues with high meta1/meta2 values).
 
 ### 20220924 (0.97-3-qd46034f)
-* Fixed: Typo in parvati/shards mode.
+* Fix: Typo in parvati/shards mode.
 * Trial feature: Internal CV out scaling (calibration, sort of).
 
 ### 20220918 (0.97-2-qe258fc9)
