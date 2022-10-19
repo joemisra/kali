@@ -1,3 +1,6 @@
+### 20221019 (0.97-7-q997d8ba)
+* Scale & Offset in LFO Editor
+
 ### 20221001 (0.97-6-q950b1df)
 * Fix: For 'Shards' and 'Splat' mode, switched from ReadHermite to Read (delay
   read interpolation, was having glitch/stuttering issues with high meta1/meta2 values).
