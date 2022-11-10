@@ -1,3 +1,10 @@
+If you are running a version prior to 0.98 - HOLD SYNC AND FREEZE BUTTON WHILE POWERING ON AFTER UPDATING, to reinitialize settings.
+
+### 20221110 (0.98)
+* Re-added calibration, long-press right encoder when in LFO edit.
+* Fixed inverted CV outs.
+* Offset now changes in steps of 128 instead of 2.
+
 ### 20221019 (0.97-7-q997d8ba)
 * Scale & Offset in LFO Editor
 
