@@ -1,3 +1,7 @@
+
+### 20221124 (0.991)
+* Fixed an error where scaling + offset were applied in wrong order.
+
 ### 20221124 (0.99)
 * Config version should now automatically detect and re-initialize settings once after an update.  These changes are getting much less frequent and will only happen if new config settings have been added.
 * Input width setting added to new options page (currently only 0% or 100%, range planned in future).
