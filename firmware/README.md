@@ -4,9 +4,10 @@
 
 ### 20221124 (0.99)
 * Config version should now automatically detect and re-initialize settings once after an update.  These changes are getting much less frequent and will only happen if new config settings have been added.
-* Input width setting added to new options page (currently only 0% or 100%, range planned in future).
-* Global envelope follower attack/release placeholders added to new options page.
-* "Freeze Mode" added to new options page. This changes the freeze input and
+* "OTHER SETTINGS" options page added after REVERB SETTINGS page - use left encoder on main screen to change page.
+* Input width setting added to OTHER SETTINGS page (currently only 0% or 100%, range planned in future).
+* Global envelope follower attack/release placeholders added to OTHER SETTINGS page.
+* "Freeze Mode" added to OTHER SETTINGS page. This changes the freeze input and
   button to LFO phase reset, allowing you to use LFOs as envelopes etc. This does disable the freeze DSP effect.
  
 ### 20221110 (0.98)
