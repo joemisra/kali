@@ -1,3 +1,5 @@
+### 20221130 (0.991)
+* Extended meta2 range in basic mode (now divides 1 to 32) 
 
 ### 20221124 (0.991)
 * Fixed an error where scaling + offset were applied in wrong order.
