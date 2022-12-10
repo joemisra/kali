@@ -1,3 +1,7 @@
+### 20221209 (0.991-1)
+* Range adjustments in Parvati (granular) modes to stop screen stuttering
+* Feedback limit increased slightly in basic mode
+
 ### 20221130 (0.991)
 * Extended meta2 range in basic mode (now divides 1 to 32) 
 
