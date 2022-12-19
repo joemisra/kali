@@ -132,11 +132,11 @@ The "Delay Adj" knob just below the right encoder allows you to switch between d
 
 To start, try the following settings in Basic mode:
 
-* Set "Meta 1" and "Meta 2" to their lowest settings.
-* Set "L Time" and "R Time" to 25%.
-* Set "Cutoff" to 75-100%.
+* Set "Meta 1" and "Meta 2" to their lowest settings
+* Set "L Time" and "R Time" to 25%
+* Set "Cutoff" to 75-100%
 * Set "Feedback" to 50-90% (this may behave erratically in some modes).
-* Set "Wet/Dry" to 50%.
+* Set "Wet/Dry" to 50%
 
 Now, with some audio input, start adjusting the "Meta 1" and "Meta 2" knobs. In this mode, "Meta 1" fine-tunes the delay time, while "Meta 2" divides the delay time by a whole number.
 
@@ -163,7 +163,7 @@ M1 and M2 change delay time independently of the master l/r times other parts of
 === Free & FreePong
 As above, but L Time and R Time are independent.
 
-== Parvati Mode 
+== Parvati Mode (Chorus) 
 
 === Chorus
 |===
@@ -172,6 +172,20 @@ As above, but L Time and R Time are independent.
 |Modulation Rate|Modulation Amplification   
 |===
 
+To create a chorus effect, 3 short delay lines per channel are used to create a copy of the original sound. The length of the delay lines are modulated slightly up and down using a triangle LFO. The depth of the modulation, as well as the rate of the LFO, can be adjusted to control the character of the chorus effect.
+
+The dry signal and the modulated delayed signals are then mixed together to create the final sound. The wet/dry mix can be adjusted to control the amount of chorus effect applied to the sound.
+
+== Parvati Mode (Granular)
+
+In the context of granular delay, the main delay buffer is a memory location where the original sound is stored and from which the grains are sampled. 
+
+Each submode may have its own set of parameters that control the size shape, pitch and time of the grains, and the way in which the grains are arranged and played back.
+
+In some granular delay algorithms, these parameters may be controlled directly by the user, allowing for a high degree of customization and control over the effect.
+
+However, since Kali has a very limited number of controls, the submodes have preset combinations of multiple parameters that are controlled with just "Meta 1" and "Meta 2." 
+
 === Devi
 |===
 |Meta 1|Meta 2
@@ -179,7 +193,7 @@ As above, but L Time and R Time are independent.
 |Grain Speed|Grain Speed Multiplier   
 |===
 
-Old school harmonizer / granular delay. 3 grains per channel running at slightly different speeds.
+Old school harmonizer / granular delay. 
 
 NOTE: Previously called "Parvati"
 
@@ -203,6 +217,7 @@ NOTE: Previously called "Parvati"
 
 |Grain Speed|Grain Speed Multiplier
 |===
+Granular delay with random element.
 
 === Gramma (Parvati + AM)
 |===
@@ -286,6 +301,182 @@ Right In ------------> Wet + Dry ------------> Right Out
       |                   |
       +-------------------+
 ```
+
+== CV Output Mode Reference
+
+The 6 CV outputs are divided into groups of 3 L and 3 R.
+
+In synchronized modes (all except Oscillator, Envelope Follower, and Raw mode), left side outputs follow L Time, and right side outputs follow R Time.
+
+=== Common Waveshapes
+For any mode that uses "typical" oscillators, the following shapes are available:
+
+* Sine
+* Triangle
+* Saw
+* Ramp
+* Square/Pulse ([])
+* Band-limited Triangle (Ptri)
+* Band-limited Saw (Psaw)
+* Band-limited Square/Pulse (P[])
+
+Each can be set to + (unipolar), +/- (bipolar), - (inverted unipolar), -/+ (inverted bipolar).
+
+Each has an independent rate multiplier/divider, by default the rate matches L Time or R Time (depending on which side).
+
+An fine offset (+/- 2048) and scale (0 - 100%) can be applied.
+
+TIP: When KALI starts up all LFOs start at the same phase, editing LFO settings can cause them to shift out of phase from each other which may or may not be desirable. To re-sync all LFOs and clocks press the RIGHT ENCODER on the MAIN PAGE.
+
+== LFO Modes
+
+=== Sync
+
+Modulators synchronized to delay time.
+
+<<Common Waveshapes>>
+
+|===
+|LFO ADJ
+
+|Sets pulse width when square [] or polyblep square P[ ] shape is selected.
+|===
+
+=== Sample & Hold
+
+This is a random source that is based on the ClockedNoise model in Mutable Instruments' Plaits.
+
+|===
+|LFO ADJ
+
+|Slew rate.
+|===
+
+=== Track & Hold
+
+Track & Hold randomly holds the current value of whatever waveform is selected, then allows it through again.
+
+<<Common Waveshapes>>
+
+|===
+|LFO ADJ
+
+|Hold Probability
+|===
+
+=== Random Reset
+
+Random reset will reset the cycle of the selected LFO shape at random clock ticks (1L, 2L, 3L follows L Sync and 1R, 2R, 3R follows R Sync).
+
+<<Common Waveshapes>>
+
+|===
+|LFO ADJ
+
+|Reset Probability
+|===
+
+=== Random Shape
+
+Random shape will change to another shape after a set number of cycles.
+
+<<Common Waveshapes>>
+
+|===
+|LFO ADJ
+
+|Number of cycles before changing to another shape (1 - 6)
+|===
+
+=== Oscillator
+
+Audio rate modulators; sample rate of LFOs is 500Hz/12-bit by default, crunch and aliasing. (Can produce musical tones, but note that KALI cannot track 1v/o.)
+
+<<Common Waveshapes>>
+
+|===
+|LFO ADJ
+
+|Unused.
+|===
+
+=== Glacier
+
+Same as sync, with speed divided by 100.
+
+<<Common Waveshapes>>
+
+|===
+|LFO ADJ
+
+|Unused.
+|===
+
+=== Clocks
+
+Pulse wave with 50% duty synchronized to master clock.
+
+Phase resets on next internal clock tick when this mode is selected.
+
+|===
+|LFO ADJ
+
+|Unused
+|===
+
+== Non-LFO CV Modes
+
+=== Envelope Follower
+
+Left side follows left audio input, and right side follows right audio input.
+
+|===
+|LFO ADJ
+
+|Gain of signal going into follower.
+|===
+
+=== Sidechain
+
+Sync + Envelope Follower - Envelope ducks LFO amplitude.
+
+|===
+|LFO ADJ
+
+|Gain of signal going into follower.
+|===
+
+=== Raw
+
+This simply sends a constant voltage (-7v to 7v) from the selected output.
+
+|===
+|LFO ADJ
+
+|Set voltage.
+|===
+
+== CV Out Internals 
+
+CV outs 1L, 2L, 3L and 1R are driven by a 12-bit TI DAC7554, CV outs 2R and 3R are driven by the 12-bit DAC on the Daisy Patch Submodule. 
+
+The 12-bit resolution means we're sending integer values from 0 - 4095, but until it's time to send everything is floating point.
+
+For the main synchronized wave shapes, KALI extends the Oscillator class in the daisysp library, for more information:
+
+https://electro-smith.github.io/DaisySP/classdaisysp_1_1_oscillator.html
+
+Sample+Hold uses the ClockedNoise class + a basic slew limiter:
+
+https://electro-smith.github.io/DaisySP/classdaisysp_1_1_clocked_noise.html
+
+Track+Hold uses the SampleHold class:
+
+https://electro-smith.github.io/DaisySP/classdaisysp_1_1_sample_hold.html
+
+Probability is calculated in part by the Maytrig class:
+
+https://electro-smith.github.io/DaisySP/classdaisysp_1_1_maytrig.html
 
 == Troubleshooting
 
