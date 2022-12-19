@@ -1,5 +1,5 @@
 = dsp.coffee KALI
-:toc:
+:toc: left
 
 == Introduction
 

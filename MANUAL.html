@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.18">
+<title>dsp.coffee KALI</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>dsp.coffee KALI</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_introduction">Introduction</a></li>
+<li><a href="#_specifications">Specifications</a></li>
+<li><a href="#_front_panel_audio_io">Front Panel : Audio I/O</a></li>
+<li><a href="#_front_panel_controls_cv_in">Front Panel : Controls / CV In</a></li>
+<li><a href="#_front_panel_cv_outs">Front Panel : CV Outs</a></li>
+<li><a href="#_front_panel_midi_io">Front Panel : MIDI I/O</a></li>
+<li><a href="#_front_panel_screen_encoders">Front Panel : Screen + Encoders</a>
+<ul class="sectlevel2">
+<li><a href="#_additional_shortcuts">Additional shortcuts</a></li>
+</ul>
+</li>
+<li><a href="#_lfos_cv_out">LFOs / CV Out</a>
+<ul class="sectlevel2">
+<li><a href="#_exploring_lfo_modes">Exploring LFO Modes</a></li>
+<li><a href="#_how_lfo_rates_in_kali_work">How LFO Rates in KALI Work</a></li>
+</ul>
+</li>
+<li><a href="#_delayfx_modes">Delay/FX Modes</a></li>
+<li><a href="#_patch_examples">Patch Examples</a></li>
+<li><a href="#_kali_reference">KALI Reference</a>
+<ul class="sectlevel2">
+<li><a href="#_fx_modes">FX Modes</a></li>
+</ul>
+</li>
+<li><a href="#_basic_mode">Basic Mode</a>
+<ul class="sectlevel2">
+<li><a href="#_basic_ping_pong">Basic &amp; Ping-Pong</a></li>
+<li><a href="#_free_freepong">Free &amp; FreePong</a></li>
+</ul>
+</li>
+<li><a href="#_parvati_mode_chorus">Parvati Mode (Chorus)</a>
+<ul class="sectlevel2">
+<li><a href="#_chorus">Chorus</a></li>
+</ul>
+</li>
+<li><a href="#_parvati_mode_granular">Parvati Mode (Granular)</a>
+<ul class="sectlevel2">
+<li><a href="#_devi">Devi</a></li>
+<li><a href="#_knives">Knives</a></li>
+<li><a href="#_shards">Shards</a></li>
+<li><a href="#_splat">Splat</a></li>
+<li><a href="#_gramma_parvati_am">Gramma (Parvati + AM)</a></li>
+<li><a href="#_grampa_knives_am">Grampa (Knives + AM)</a></li>
+</ul>
+</li>
+<li><a href="#_kali_distortion">Kali (Distortion)</a>
+<ul class="sectlevel2">
+<li><a href="#_sin">Sin</a></li>
+<li><a href="#_satch">Satch</a></li>
+<li><a href="#_diode">Diode</a></li>
+<li><a href="#_fold">Fold</a></li>
+<li><a href="#_external_feedback_path">External Feedback Path</a></li>
+</ul>
+</li>
+<li><a href="#_cv_output_mode_reference">CV Output Mode Reference</a>
+<ul class="sectlevel2">
+<li><a href="#_common_waveshapes">Common Waveshapes</a></li>
+</ul>
+</li>
+<li><a href="#_lfo_modes">LFO Modes</a>
+<ul class="sectlevel2">
+<li><a href="#_sync">Sync</a></li>
+<li><a href="#_sample_hold">Sample &amp; Hold</a></li>
+<li><a href="#_track_hold">Track &amp; Hold</a></li>
+<li><a href="#_random_reset">Random Reset</a></li>
+<li><a href="#_random_shape">Random Shape</a></li>
+<li><a href="#_oscillator">Oscillator</a></li>
+<li><a href="#_glacier">Glacier</a></li>
+<li><a href="#_clocks">Clocks</a></li>
+</ul>
+</li>
+<li><a href="#_non_lfo_cv_modes">Non-LFO CV Modes</a>
+<ul class="sectlevel2">
+<li><a href="#_envelope_follower">Envelope Follower</a></li>
+<li><a href="#_sidechain">Sidechain</a></li>
+<li><a href="#_raw">Raw</a></li>
+</ul>
+</li>
+<li><a href="#_cv_out_internals">CV Out Internals</a></li>
+<li><a href="#_firmware_updates">Firmware Updates</a></li>
+<li><a href="#_reset_config_to_defaults">Reset Config To Defaults</a></li>
+<li><a href="#_troubleshooting">Troubleshooting</a>
+<ul class="sectlevel2">
+<li><a href="#_daisy_patch_submodule_does_not_show_up_when_using_the_web_programmer">daisy patch submodule does not show up when using the web programmer</a></li>
+</ul>
+</li>
+<li><a href="#_credits">Credits</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>KALI is a tool that allows you to create complex and musical sounds by combining a modulated audio source with a time-domain effect, such as a delay.</p>
+</div>
+<div class="paragraph">
+<p>To facilitate this process, KALI has two main components: a 32-bit, 48000khz stereo time domain FX processor and 6 bipolar 12-bit CV outputs (-7v to 7v) plus 2 clocks.</p>
+</div>
+<div class="paragraph">
+<p>The L and R delay times serve as the main timebase, and the rates of all other elements can be adjusted in relation to this timebase, either independently or simultaneously using the LFO rate knob.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_specifications">Specifications</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Electrosmith Daisy Patch Submodule: a development platform with a STM32 H7 processor running at 480 MHz and a high-quality PCM3060 codec for audio input and output. The audio quality is 48 kHz at 24-bit resolution, with internal processing at 32-bit floating point. The input gain on the PCM3060 can be adjusted from -100 dB to +20 dB.</p>
+</li>
+<li>
+<p>Large amount of SDRAM: allows for delay lines with a maximum time of around 150 seconds per channel (although the default setting is capped at 10 seconds in most modes).</p>
+</li>
+<li>
+<p>12-bit CV outputs: lowpass filtered to reduce aliasing. The output range is ~-6.25 V to 6.25 V (uncalibrated), most LFO modes can be switched between bipolar and unipolar output. The sample rate for the CV outputs is currently 500 Hz, or once per block of audio.</p>
+</li>
+<li>
+<p>Sync in by pulse/trigger or TRS MIDI In (A or B, thx to lpzwmodules).</p>
+</li>
+<li>
+<p>2 clock sync out with configurable rates.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_front_panel_audio_io">Front Panel : Audio I/O</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Kali has two audio input jacks, labeled "L" and "R," located on the bottom left of the panel. It also has two audio output jacks, also labeled "L" and "R," located on the bottom right of the panel.</p>
+</div>
+<div class="paragraph">
+<p>If no cable is plugged into the "R" input jack, the audio from the "L" input jack will be automatically routed to the "R" channel.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_front_panel_controls_cv_in">Front Panel : Controls / CV In</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Kali has 8 control knobs and several CV inputs. The CV inputs expect a voltage range of 0 V to 5 V, which can be thought of as 0% to 100% of the parameter&#8217;s range. Input voltages from -5 V to 0 V will be converted to positive voltages. Voltages outside of the range of -5 V to 5 V will be clipped.</p>
+</div>
+<div class="paragraph">
+<p>The 8 knobs in the center of Kali are attenuators, which reduce the amplification of any CV input. They are normalled to 5 V, so by default, they range from 0% to 100%. The knobs and CV inputs can be used to control the following parameters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>META 1</p>
+</li>
+<li>
+<p>META 2</p>
+</li>
+<li>
+<p>LFO RATE (MULTIPLIER)</p>
+</li>
+<li>
+<p>LEFT DELAY TIME</p>
+</li>
+<li>
+<p>RIGHT DELAY TIME</p>
+</li>
+<li>
+<p>CUTOFF</p>
+</li>
+<li>
+<p>FEEDBACK</p>
+</li>
+<li>
+<p>MIX</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>There are also two additional knobs that can only be controlled by the knobs:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>LFO ADJUST</p>
+</li>
+<li>
+<p>DELAY ADJUST</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Kali also has a trigger/gate input and button, which are linked. The trigger/gate input can be used to sync the LFO, and the button can be used to freeze the audio. There is also a sync input that can be used to synchronize the LFO to an external source.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_front_panel_cv_outs">Front Panel : CV Outs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>KALI has 6 CV outputs, indicated by illuminated dots on the upper left and upper right of the panel. These outputs are divided into two groups of 3. These are referred to as 1L, 2L, and 3L, and 1R, 2R, and 3R. Each output can be configured independently.</p>
+</div>
+<div class="paragraph">
+<p>The CV output modes are generally types of LFOs that are synchronized to the delay time in some way, but there are also some specialized modes such as envelope followers and constant voltages.</p>
+</div>
+<div class="paragraph">
+<p>To edit the parameters of the CV outputs, except for the LFO RATE (which affects all outputs), you will need to access the LFO EDIT screen. To do this, press the left encoder once when you are on the main screen. On the LFO EDIT screen, you can press the right encoder to cycle through the different parameters of the CV output, use the right encoder to change the selected parameter, and use the left encoder to select which CV output you want to edit.</p>
+</div>
+<div class="paragraph">
+<p>Link to LFO EDIT screen section here.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_front_panel_midi_io">Front Panel : MIDI I/O</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>KALI has TRS MIDI jacks for input and output.</p>
+</div>
+<div class="paragraph">
+<p>Currently only the input jack is used, for midi clock in.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_front_panel_screen_encoders">Front Panel : Screen + Encoders</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Here is a quick explainer for the screen and navigating the firmware.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To return to the main page from any other page, click the left encoder.</p>
+</li>
+<li>
+<p>On the main page, rotate the left encoder to switch between configuration sub-pages. Press the right encoder to select a parameter and turn the right encoder to adjust its value.</p>
+</li>
+<li>
+<p>Rotating the right encoder on the main page changes the delay mode.</p>
+</li>
+<li>
+<p>To edit LFOs, click the left encoder to go to the LFO Edit page. Rotate the left encoder to select the LFO to edit. Press the right encoder to select a parameter and turn the right encoder to adjust its value.</p>
+</li>
+<li>
+<p>Click the left encoder to return to the main page.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_additional_shortcuts">Additional shortcuts</h3>
+<div class="sect3">
+<h4 id="_main_page">Main Page</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>To reset the phase of all waveforms and clock, click the right encoder.</p>
+</li>
+<li>
+<p>To access advanced configuration options, press and hold the right encoder for 2 seconds. To exit this mode, click the left encoder.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_lfo_edit_page_calibration_settings">LFO Edit Page (Calibration Settings)</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>To access advanced LFO settings, press and hold the right encoder for 2 seconds. This will switch the bottom left and bottom right parameters (offset and amplitude) with their stored calibration adjustments.</p>
+</li>
+<li>
+<p>To return to the normal settings, press and hold the right encoder for 2 seconds again.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The last sub-page on the main page is a debug screen where you can find the version of the currently installed firmware.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lfos_cv_out">LFOs / CV Out</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In modular synthesis, an LFO (low-frequency oscillator) is a type of oscillator that produces a periodic waveform at a frequency range below the range of human hearing (generally below 20 Hz). LFOs are typically used to modulate various parameters of other modules in a modular synthesizer, such as the pitch of an oscillator, the cutoff frequency of a filter, or the amplitude of an envelope generator.</p>
+</div>
+<div class="paragraph">
+<p>Using multiple synchronized LFOs can allow for more complex and interesting modulations to be achieved. For example, you could use one LFO to modulate the pitch of an oscillator and another LFO to modulate the cutoff frequency of a filter, creating a constantly evolving sound. By synchronizing the two LFOs, you can ensure that the modulations are in phase, which can create a more cohesive and rhythmic sound.</p>
+</div>
+<div class="sect2">
+<h3 id="_exploring_lfo_modes">Exploring LFO Modes</h3>
+<div class="paragraph">
+<p>To browse the LFO modes in Kali, select the LFO Edit page by clicking the left encoder on the main page. From here, you can select which LFO you want to edit by rotating the left encoder. You can also adjust the waveform, frequency, and other parameters of the LFO by pressing the right encoder to select a parameter and then turning the right encoder to adjust the value.</p>
+</div>
+<div class="paragraph">
+<p>On the LFO Edit page, the LFO MODE parameter will be highlighted. You can change the selected parameter by turning the right encoder. To move to the next parameter, click the right encoder.</p>
+</div>
+<div class="paragraph">
+<p>The LFO ADJ % shows the current setting for LFO ADJ on the selected LFO. LFO ADJ affects different LFO modes in different ways, such as adding slew to the S+H mode or changing the pulse width for the square and polyblep square shapes in SYNC mode.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+LFO ADJ is a takeover knob, which means it only changes the setting if you turn the knob while on the LFO Edit page.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Experiment with different LFO settings to reate interesting modulations in your sound.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_lfo_rates_in_kali_work">How LFO Rates in KALI Work</h3>
+<div class="paragraph">
+<p>In KALI, the LFO rates are synchronized with the delay times. The base frequency for the LFOs is calculated based on the current delay time.</p>
+</div>
+<div class="paragraph">
+<p>There are two ways to adjust the LFO rate:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The LFO RATE knob on the front panel applies a rate multiplier to all LFOs equally.</p>
+</li>
+<li>
+<p>Each LFO has an independent multiplier/divider setting, which can be changed separately.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The final LFO rate is calculated by multiplying the base frequency, the LFO rate, and the multiplier/divider (unique to each cv out).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+If you want to reset all the LFOs to the same phase, go to the main page and click the right encoder.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_delayfx_modes">Delay/FX Modes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are currently 4 major modes in Kali:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>"Basic" mode contains a standard delay and a ping-pong delay. The standard delay has two submodes: "Linked" and "Unlinked". In "Linked" mode, the right delay is set as a ratio of the left delay. In "Unlinked" mode, the left and right delays are independent. The ping-pong delay bounces the sound between the left and right channels.</p>
+</li>
+<li>
+<p>"Parvati" mode contains a "Chorus" submode and several variations of granular delays. The "Chorus" submode creates a detuned and modulated version of the audio signal, creating a thicker sound. The granular submodes break the audio signal into small grains and reassemble them at a different speed, creating a time-warping effect.</p>
+</li>
+<li>
+<p>"Kali" mode contains digital distortion algorithms that are applied to the audio signal before it is passed through a standard delay.</p>
+</li>
+<li>
+<p>"External Feedback" mode allows you to route the left output to another module (such as a filter), and then back into Kali&#8217;s right input, before the signal is fed back into the delay line. This creates a feedback loop that can create a range of effects from subtle echoes to distorted and chaotic sounds.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The right encoder changes the major mode.</p>
+</div>
+<div class="paragraph">
+<p>The "Delay Adj" knob just below the right encoder allows you to switch between different submodes of the major mode. Each submode has two settings that correspond to the "Meta 1" and "Meta 2" knobs. These settings are sensitive to the current mode and will behave differently depending on the mode you are in.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_patch_examples">Patch Examples</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To start, try the following settings in Basic mode:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Set "Meta 1" and "Meta 2" to their lowest settings</p>
+</li>
+<li>
+<p>Set "L Time" and "R Time" to 25%</p>
+</li>
+<li>
+<p>Set "Cutoff" to 75-100%</p>
+</li>
+<li>
+<p>Set "Feedback" to 50-90% (this may behave erratically in some modes).</p>
+</li>
+<li>
+<p>Set "Wet/Dry" to 50%</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Now, with some audio input, start adjusting the "Meta 1" and "Meta 2" knobs. In this mode, "Meta 1" fine-tunes the delay time, while "Meta 2" divides the delay time by a whole number.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_kali_reference">KALI Reference</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_fx_modes">FX Modes</h3>
+<div class="paragraph">
+<p>These modes use META 1 and META 2 for algorithm specific settings, all other controls serve the same function unless noted otherwise.</p>
+</div>
+<div class="paragraph">
+<p>Knob positions are stored for each mode and submode as you are editing, and will be recalled. When you select a mode for the first time, positions are initialized to wherever knobs (or CV input) are set.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_basic_mode">Basic Mode</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_basic_ping_pong">Basic &amp; Ping-Pong</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Meta 1</th>
+<th class="tableblock halign-left valign-top">Meta 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fine Time Adjust</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sharp Time Divider</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>M1 and M2 change delay time independently of the master l/r times other parts of kali use.</p>
+</div>
+<div class="paragraph">
+<p>"Sharp Time Divider" Divides L Time and R Time by a whole number immediately, basic declicking is performed.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_free_freepong">Free &amp; FreePong</h3>
+<div class="paragraph">
+<p>As above, but L Time and R Time are independent.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_parvati_mode_chorus">Parvati Mode (Chorus)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_chorus">Chorus</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Meta 1</th>
+<th class="tableblock halign-left valign-top">Meta 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Modulation Rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Modulation Amplification</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>To create a chorus effect, 3 short delay lines per channel are used to create a copy of the original sound. The length of the delay lines are modulated slightly up and down using a triangle LFO. The depth of the modulation, as well as the rate of the LFO, can be adjusted to control the character of the chorus effect.</p>
+</div>
+<div class="paragraph">
+<p>The dry signal and the modulated delayed signals are then mixed together to create the final sound. The wet/dry mix can be adjusted to control the amount of chorus effect applied to the sound.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_parvati_mode_granular">Parvati Mode (Granular)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the context of granular delay, the main delay buffer is a memory location where the original sound is stored and from which the grains are sampled.</p>
+</div>
+<div class="paragraph">
+<p>Each submode may have its own set of parameters that control the size shape, pitch and time of the grains, and the way in which the grains are arranged and played back.</p>
+</div>
+<div class="paragraph">
+<p>In some granular delay algorithms, these parameters may be controlled directly by the user, allowing for a high degree of customization and control over the effect.</p>
+</div>
+<div class="paragraph">
+<p>However, since Kali has a very limited number of controls, the submodes have preset combinations of multiple parameters that are controlled with just "Meta 1" and "Meta 2."</p>
+</div>
+<div class="sect2">
+<h3 id="_devi">Devi</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Meta 1</th>
+<th class="tableblock halign-left valign-top">Meta 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Grain Speed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Grain Speed Multiplier</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Old school harmonizer / granular delay.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Previously called "Parvati"
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_knives">Knives</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Meta 1</th>
+<th class="tableblock halign-left valign-top">Meta 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Grain Speed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Grain Speed Multiplier</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_shards">Shards</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Meta 1</th>
+<th class="tableblock halign-left valign-top">Meta 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Grain Speed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Grain Speed Multiplier</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_splat">Splat</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Meta 1</th>
+<th class="tableblock halign-left valign-top">Meta 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Grain Speed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Grain Speed Multiplier</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Granular delay with random element.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gramma_parvati_am">Gramma (Parvati + AM)</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Meta 1</th>
+<th class="tableblock halign-left valign-top">Meta 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Grain Speed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Grain Speed Multiplier</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Gramma is the same algorithm as Devi above, but one of the control signals used in the algorithm is applied to amplitude as well.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_grampa_knives_am">Grampa (Knives + AM)</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Meta 1</th>
+<th class="tableblock halign-left valign-top">Meta 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Grain Speed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Grain Speed Multiplier</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Grampa is the same algorithm as Knives above, but one of the control signals used in the algorithm is applied to amplitude as well.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_kali_distortion">Kali (Distortion)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_sin">Sin</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Meta 1</th>
+<th class="tableblock halign-left valign-top">Meta 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Distortion Amount L</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Distortion Amount R</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Sin is a sinusoidal waveshaper:</p>
+</div>
+<div class="paragraph">
+<p><code>sin(in * PI_F * 20.f * Meta)</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_satch">Satch</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Meta 1</th>
+<th class="tableblock halign-left valign-top">Meta 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Threshold</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L+R Gain</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Satch is a digital saturation algorithm that has quite a lot of gain and over the top feedback.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_diode">Diode</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Meta 1</th>
+<th class="tableblock halign-left valign-top">Meta 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Threshold</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L+R Gain (Post)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Diode is a simple rectifier:</p>
+</div>
+<div class="paragraph">
+<p><code>in / (threshold + abs(in))</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_fold">Fold</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Meta 1</th>
+<th class="tableblock halign-left valign-top">Meta 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Threshold</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L+R Gain (Post)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Fold is a wavefolder:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>`if (in &gt; threshold || in &lt; -threshold)`
+`{`
+     `out = fabs(fabs(fmod(in - threshold, threshold * 4)) - threshold * 2) - threshold;`
+`}`</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_external_feedback_path">External Feedback Path</h3>
+<div class="paragraph">
+<p>Normally the feedback path only has a FIR cutoff filter in it. If you would like to experiment with putting analog filters or any other sort of modules in the feedback path, this is where to do it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>      +-------------------+
+      |                   |
+Left In ------------&gt; Basic Delay (mono) ------------&gt; Left Out
+      |                   |
+      |   YOUR FEEDBACK   |
+      |      PATH         |
+      |       HERE        |
+      |                   |
+Right In ------------&gt; Wet + Dry ------------&gt; Right Out
+      |                   |
+      +-------------------+</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cv_output_mode_reference">CV Output Mode Reference</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The 6 CV outputs are divided into groups of 3 L and 3 R.</p>
+</div>
+<div class="paragraph">
+<p>In synchronized modes (all except Oscillator, Envelope Follower, and Raw mode), left side outputs follow L Time, and right side outputs follow R Time.</p>
+</div>
+<div class="sect2">
+<h3 id="_common_waveshapes">Common Waveshapes</h3>
+<div class="paragraph">
+<p>For any mode that uses "typical" oscillators, the following shapes are available:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Sine</p>
+</li>
+<li>
+<p>Triangle</p>
+</li>
+<li>
+<p>Saw</p>
+</li>
+<li>
+<p>Ramp</p>
+</li>
+<li>
+<p>Square/Pulse ([])</p>
+</li>
+<li>
+<p>Band-limited Triangle (Ptri)</p>
+</li>
+<li>
+<p>Band-limited Saw (Psaw)</p>
+</li>
+<li>
+<p>Band-limited Square/Pulse (P[])</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Each can be set to + (unipolar), /- (bipolar), - (inverted unipolar), -/ (inverted bipolar).</p>
+</div>
+<div class="paragraph">
+<p>Each has an independent rate multiplier/divider, by default the rate matches L Time or R Time (depending on which side).</p>
+</div>
+<div class="paragraph">
+<p>An fine offset (+/- 2048) and scale (0 - 100%) can be applied.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+When KALI starts up all LFOs start at the same phase, editing LFO settings can cause them to shift out of phase from each other which may or may not be desirable. To re-sync all LFOs and clocks press the RIGHT ENCODER on the MAIN PAGE.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lfo_modes">LFO Modes</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_sync">Sync</h3>
+<div class="paragraph">
+<p>Modulators synchronized to delay time.</p>
+</div>
+<div class="paragraph">
+<p><a href="#_common_waveshapes">Common Waveshapes</a></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">LFO ADJ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sets pulse width when square [] or polyblep square P[ ] shape is selected.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_sample_hold">Sample &amp; Hold</h3>
+<div class="paragraph">
+<p>This is a random source that is based on the ClockedNoise model in Mutable Instruments' Plaits.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">LFO ADJ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Slew rate.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_track_hold">Track &amp; Hold</h3>
+<div class="paragraph">
+<p>Track &amp; Hold randomly holds the current value of whatever waveform is selected, then allows it through again.</p>
+</div>
+<div class="paragraph">
+<p><a href="#_common_waveshapes">Common Waveshapes</a></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">LFO ADJ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hold Probability</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_random_reset">Random Reset</h3>
+<div class="paragraph">
+<p>Random reset will reset the cycle of the selected LFO shape at random clock ticks (1L, 2L, 3L follows L Sync and 1R, 2R, 3R follows R Sync).</p>
+</div>
+<div class="paragraph">
+<p><a href="#_common_waveshapes">Common Waveshapes</a></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">LFO ADJ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reset Probability</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_random_shape">Random Shape</h3>
+<div class="paragraph">
+<p>Random shape will change to another shape after a set number of cycles.</p>
+</div>
+<div class="paragraph">
+<p><a href="#_common_waveshapes">Common Waveshapes</a></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">LFO ADJ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of cycles before changing to another shape (1 - 6)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_oscillator">Oscillator</h3>
+<div class="paragraph">
+<p>Audio rate modulators; sample rate of LFOs is 500Hz/12-bit by default, crunch and aliasing. (Can produce musical tones, but note that KALI cannot track 1v/o.)</p>
+</div>
+<div class="paragraph">
+<p><a href="#_common_waveshapes">Common Waveshapes</a></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">LFO ADJ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unused.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_glacier">Glacier</h3>
+<div class="paragraph">
+<p>Same as sync, with speed divided by 100.</p>
+</div>
+<div class="paragraph">
+<p><a href="#_common_waveshapes">Common Waveshapes</a></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">LFO ADJ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unused.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_clocks">Clocks</h3>
+<div class="paragraph">
+<p>Pulse wave with 50% duty synchronized to master clock.</p>
+</div>
+<div class="paragraph">
+<p>Phase resets on next internal clock tick when this mode is selected.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">LFO ADJ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unused</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_non_lfo_cv_modes">Non-LFO CV Modes</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_envelope_follower">Envelope Follower</h3>
+<div class="paragraph">
+<p>Left side follows left audio input, and right side follows right audio input.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">LFO ADJ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gain of signal going into follower.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_sidechain">Sidechain</h3>
+<div class="paragraph">
+<p>Sync + Envelope Follower - Envelope ducks LFO amplitude.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">LFO ADJ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gain of signal going into follower.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_raw">Raw</h3>
+<div class="paragraph">
+<p>This simply sends a constant voltage (-7v to 7v) from the selected output.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">LFO ADJ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set voltage.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cv_out_internals">CV Out Internals</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>CV outs 1L, 2L, 3L and 1R are driven by a 12-bit TI DAC7554, CV outs 2R and 3R are driven by the 12-bit DAC on the Daisy Patch Submodule.</p>
+</div>
+<div class="paragraph">
+<p>The 12-bit resolution means we&#8217;re sending integer values from 0 - 4095, but until it&#8217;s time to send everything is floating point.</p>
+</div>
+<div class="paragraph">
+<p>For the main synchronized wave shapes, KALI extends the Oscillator class in the daisysp library, for more information:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://electro-smith.github.io/DaisySP/classdaisysp_1_1_oscillator.html" class="bare">https://electro-smith.github.io/DaisySP/classdaisysp_1_1_oscillator.html</a></p>
+</div>
+<div class="paragraph">
+<p>Sample+Hold uses the ClockedNoise class + a basic slew limiter:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://electro-smith.github.io/DaisySP/classdaisysp_1_1_clocked_noise.html" class="bare">https://electro-smith.github.io/DaisySP/classdaisysp_1_1_clocked_noise.html</a></p>
+</div>
+<div class="paragraph">
+<p>Track+Hold uses the SampleHold class:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://electro-smith.github.io/DaisySP/classdaisysp_1_1_sample_hold.html" class="bare">https://electro-smith.github.io/DaisySP/classdaisysp_1_1_sample_hold.html</a></p>
+</div>
+<div class="paragraph">
+<p>Probability is calculated in part by the Maytrig class:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://electro-smith.github.io/DaisySP/classdaisysp_1_1_maytrig.html" class="bare">https://electro-smith.github.io/DaisySP/classdaisysp_1_1_maytrig.html</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_firmware_updates">Firmware Updates</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Keep eurorack power off while KALI is on usb power</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Download most recent Kali firmware from this repository <a href="https://github.com/joemisra/kali/tree/main/firmware" class="bare">https://github.com/joemisra/kali/tree/main/firmware</a>.</p>
+</li>
+<li>
+<p>In a Chrome-based browser window, navigate to the Electrosmith Web Programmer: <a href="https://electro-smith.github.io/Programmer/" class="bare">https://electro-smith.github.io/Programmer/</a>. This will not work in Safari.</p>
+</li>
+<li>
+<p>Once there, while holding down the BOOT button, connect the Daisy Patch Submodule on the back of Kali to your computer using a micro USB cable.</p>
+</li>
+<li>
+<p>If you have successfully entered the bootloader, the right sync LED will be on.</p>
+</li>
+<li>
+<p>Connect Daisy as a DFU device by clicking the "Connect" button at the top of the Web Programmer page</p>
+</li>
+<li>
+<p>In the dialog box that opens, select "DFU in FS Mode" and then click "Connect"</p>
+</li>
+<li>
+<p>Unzip the kali<em><em></em>__</em>.zip you downloaded, near the bottom of the programmer page will be an option to select a file from your computer, choose Kali.bin from the unzipped archive.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_reset_config_to_defaults">Reset Config To Defaults</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To clear saved settings and reset them to defaults</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Power down KALI</p>
+</li>
+<li>
+<p>Hold down the SYNC and FREEZE buttons on the front panel</p>
+</li>
+<li>
+<p>Power KALI on</p>
+</li>
+<li>
+<p>Release buttons when main screen appears</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_troubleshooting">Troubleshooting</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_daisy_patch_submodule_does_not_show_up_when_using_the_web_programmer">daisy patch submodule does not show up when using the web programmer</h3>
+<div class="paragraph">
+<p>Some micro usb cables only supply power and there is generally no way to distinguish them, avoid the ones that come with chargers.</p>
+</div>
+<div class="paragraph">
+<p>If the screen is on and/or you can see flashing LEDs on the front side, unplug it, hold down the 'boot' button on the daisy patch submodule, and plug it back in.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_credits">Credits</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Code: Joseph Misra (proswell)</p>
+</li>
+<li>
+<p>Panel: Nathaniel Reeves (nkurence)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2022-12-19 13:52:17 -0600
+</div>
+</div>
+</body>
+</html>
