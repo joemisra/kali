@@ -83,7 +83,7 @@ Here is a quick explainer for the screen and navigating the firmware.
 
 NOTE: The last sub-page on the main page is a debug screen where you can find the version of the currently installed firmware.
 
-== LFO MODES
+== LFOs / CV Out
 
 In modular synthesis, an LFO (low-frequency oscillator) is a type of oscillator that produces a periodic waveform at a frequency range below the range of human hearing (generally below 20 Hz). LFOs are typically used to modulate various parameters of other modules in a modular synthesizer, such as the pitch of an oscillator, the cutoff frequency of a filter, or the amplitude of an envelope generator.
 
@@ -114,7 +114,7 @@ The final LFO rate is calculated by multiplying the base frequency, the LFO rate
 
 NOTE: If you want to reset all the LFOs to the same phase, go to the main page and click the right encoder.
 
-== DELAY/FX Modes
+== Delay/FX Modes
 There are currently 4 major modes in Kali:
 
 * "Basic" mode contains a standard delay and a ping-pong delay. The standard delay has two submodes: "Linked" and "Unlinked". In "Linked" mode, the right delay is set as a ratio of the left delay. In "Unlinked" mode, the left and right delays are independent. The ping-pong delay bounces the sound between the left and right channels.
@@ -125,6 +125,8 @@ There are currently 4 major modes in Kali:
 The right encoder changes the major mode.
 
 The "Delay Adj" knob just below the right encoder allows you to switch between different submodes of the major mode. Each submode has two settings that correspond to the "Meta 1" and "Meta 2" knobs. These settings are sensitive to the current mode and will behave differently depending on the mode you are in.
+
+== Patch Examples
 
 To start, try the following settings in Basic mode:
 
