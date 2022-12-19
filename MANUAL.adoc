@@ -9,6 +9,7 @@ To facilitate this process, KALI has two main components: a 32-bit, 48000khz ste
 
 The L and R delay times serve as the main timebase, and the rates of all other elements can be adjusted in relation to this timebase, either independently or simultaneously using the LFO rate knob.
 
+
 == Specifications
 
 * Electrosmith Daisy Patch Submodule: a development platform with a STM32 H7 processor running at 480 MHz and a high-quality PCM3060 codec for audio input and output. The audio quality is 48 kHz at 24-bit resolution, with internal processing at 32-bit floating point. The input gain on the PCM3060 can be adjusted from -100 dB to +20 dB.
