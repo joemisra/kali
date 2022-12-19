@@ -478,9 +478,36 @@ Probability is calculated in part by the Maytrig class:
 
 https://electro-smith.github.io/DaisySP/classdaisysp_1_1_maytrig.html
 
+== Firmware Updates
+
+**Keep eurorack power off while KALI is on usb power** 
+
+* Download most recent Kali firmware from this repository https://github.com/joemisra/kali/tree/main/firmware.
+
+* In a Chrome-based browser window, navigate to the Electrosmith Web Programmer: https://electro-smith.github.io/Programmer/. This will not work in Safari.
+
+* Once there, while holding down the BOOT button, connect the Daisy Patch Submodule on the back of Kali to your computer using a micro USB cable.
+* If you have successfully entered the bootloader, the right sync LED will be on.
+* Connect Daisy as a DFU device by clicking the "Connect" button at the top of the Web Programmer page
+* In the dialog box that opens, select "DFU in FS Mode" and then click "Connect"
+* Unzip the kali________.zip you downloaded, near the bottom of the programmer page will be an option to select a file from your computer, choose Kali.bin from the unzipped archive.
+
+== Reset Config To Defaults
+
+To clear saved settings and reset them to defaults
+
+* Power down KALI
+* Hold down the SYNC and FREEZE buttons on the front panel
+* Power KALI on 
+* Release buttons when main screen appears
+
 == Troubleshooting
 
+=== daisy patch submodule does not show up when using the web programmer
 
+Some micro usb cables only supply power and there is generally no way to distinguish them, avoid the ones that come with chargers.
+
+If the screen is on and/or you can see flashing LEDs on the front side, unplug it, hold down the 'boot' button on the daisy patch submodule, and plug it back in.
 
 == Credits
 * Code: Joseph Misra (proswell)
