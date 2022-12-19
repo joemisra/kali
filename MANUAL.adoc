@@ -1,0 +1,141 @@
+= dsp.coffee KALI
+
+== Introduction
+
+KALI is a tool that allows you to create complex and musical sounds by combining a modulated audio source with a time-domain effect, such as a delay.
+
+To facilitate this process, KALI has two main components: a 32-bit, 48000khz stereo time domain FX processor and 6 bipolar 12-bit CV outputs (-7v to 7v) plus 2 clocks.
+
+The L and R delay times serve as the main timebase, and the rates of all other elements can be adjusted in relation to this timebase, either independently or simultaneously using the LFO rate knob.
+
+== Specifications
+
+* Electrosmith Daisy Patch Submodule: a development platform with a STM32 H7 processor running at 480 MHz and a high-quality PCM3060 codec for audio input and output. The audio quality is 48 kHz at 24-bit resolution, with internal processing at 32-bit floating point. The input gain on the PCM3060 can be adjusted from -100 dB to +20 dB.
+* Large amount of SDRAM: allows for delay lines with a maximum time of around 150 seconds per channel (although the default setting is capped at 10 seconds in most modes).
+* 12-bit CV outputs: lowpass filtered to reduce aliasing. The output range is ~-6.25 V to 6.25 V (uncalibrated), most LFO modes can be switched between bipolar and unipolar output. The sample rate for the CV outputs is currently 500 Hz, or once per block of audio.
+* Sync in by pulse/trigger or TRS MIDI In (A or B, thx to lpzwmodules).
+* 2 clock sync out with configurable rates.
+
+== Front Panel : Audio I/O
+
+Kali has two audio input jacks, labeled "L" and "R," located on the bottom left of the panel. It also has two audio output jacks, also labeled "L" and "R," located on the bottom right of the panel.
+
+If no cable is plugged into the "R" input jack, the audio from the "L" input jack will be automatically routed to the "R" channel. 
+
+== Front Panel : Controls / CV In
+
+Kali has 8 control knobs and several CV inputs. The CV inputs expect a voltage range of 0 V to 5 V, which can be thought of as 0% to 100% of the parameter's range. Input voltages from -5 V to 0 V will be converted to positive voltages. Voltages outside of the range of -5 V to 5 V will be clipped.
+
+The 8 knobs in the center of Kali are attenuators, which reduce the amplification of any CV input. They are normalled to 5 V, so by default, they range from 0% to 100%. The knobs and CV inputs can be used to control the following parameters:
+
+* META 1
+* META 2
+* LFO RATE (MULTIPLIER)
+* LEFT DELAY TIME
+* RIGHT DELAY TIME
+* CUTOFF
+* FEEDBACK
+* MIX
+
+There are also two additional knobs that can only be controlled by the knobs:
+
+* LFO ADJUST
+* DELAY ADJUST
+
+Kali also has a trigger/gate input and button, which are linked. The trigger/gate input can be used to sync the LFO, and the button can be used to freeze the audio. There is also a sync input that can be used to synchronize the LFO to an external source.
+
+== Front Panel : CV Outs
+
+KALI has 6 CV outputs, indicated by illuminated dots on the upper left and upper right of the panel. These outputs are divided into two groups of 3. These are referred to as 1L, 2L, and 3L, and 1R, 2R, and 3R. Each output can be configured independently.
+
+The CV output modes are generally types of LFOs that are synchronized to the delay time in some way, but there are also some specialized modes such as envelope followers and constant voltages.
+
+To edit the parameters of the CV outputs, except for the LFO RATE (which affects all outputs), you will need to access the LFO EDIT screen. To do this, press the left encoder once when you are on the main screen. On the LFO EDIT screen, you can press the right encoder to cycle through the different parameters of the CV output, use the right encoder to change the selected parameter, and use the left encoder to select which CV output you want to edit.
+
+Link to LFO EDIT screen section here.
+
+== Front Panel : MIDI I/O
+
+KALI has TRS MIDI jacks for input and output.
+
+Currently only the input jack is used, for midi clock in.
+
+== Front Panel : Screen + Encoders
+Here is a quick explainer for the screen and navigating the firmware.
+
+* To return to the main page from any other page, click the left encoder.
+* On the main page, rotate the left encoder to switch between configuration sub-pages. Press the right encoder to select a parameter and turn the right encoder to adjust its value.
+* Rotating the right encoder on the main page changes the delay mode.
+* To edit LFOs, click the left encoder to go to the LFO Edit page. Rotate the left encoder to select the LFO to edit. Press the right encoder to select a parameter and turn the right encoder to adjust its value.
+* Click the left encoder to return to the main page.
+
+=== Additional shortcuts
+
+==== Main Page
+
+* To reset the phase of all waveforms and clock, click the right encoder.
+* To access advanced configuration options, press and hold the right encoder for 2 seconds. To exit this mode, click the left encoder.
+
+==== LFO Edit Page (Calibration Settings)
+
+* To access advanced LFO settings, press and hold the right encoder for 2 seconds. This will switch the bottom left and bottom right parameters (offset and amplitude) with their stored calibration adjustments.
+* To return to the normal settings, press and hold the right encoder for 2 seconds again.
+
+NOTE: The last sub-page on the main page is a debug screen where you can find the version of the currently installed firmware.
+
+== LFO MODES
+
+In modular synthesis, an LFO (low-frequency oscillator) is a type of oscillator that produces a periodic waveform at a frequency range below the range of human hearing (generally below 20 Hz). LFOs are typically used to modulate various parameters of other modules in a modular synthesizer, such as the pitch of an oscillator, the cutoff frequency of a filter, or the amplitude of an envelope generator.
+
+Using multiple synchronized LFOs can allow for more complex and interesting modulations to be achieved. For example, you could use one LFO to modulate the pitch of an oscillator and another LFO to modulate the cutoff frequency of a filter, creating a constantly evolving sound. By synchronizing the two LFOs, you can ensure that the modulations are in phase, which can create a more cohesive and rhythmic sound.
+
+=== Exploring LFO Modes
+
+To browse the LFO modes in Kali, select the LFO Edit page by clicking the left encoder on the main page. From here, you can select which LFO you want to edit by rotating the left encoder. You can also adjust the waveform, frequency, and other parameters of the LFO by pressing the right encoder to select a parameter and then turning the right encoder to adjust the value.
+
+On the LFO Edit page, the LFO MODE parameter will be highlighted. You can change the selected parameter by turning the right encoder. To move to the next parameter, click the right encoder.
+
+The LFO ADJ % shows the current setting for LFO ADJ on the selected LFO. LFO ADJ affects different LFO modes in different ways, such as adding slew to the S+H mode or changing the pulse width for the square and polyblep square shapes in SYNC mode.
+
+NOTE: LFO ADJ is a takeover knob, which means it only changes the setting if you turn the knob while on the LFO Edit page.
+
+Experiment with different LFO settings to reate interesting modulations in your sound.
+
+=== How LFO Rates in KALI Work
+
+In KALI, the LFO rates are synchronized with the delay times. The base frequency for the LFOs is calculated based on the current delay time.
+
+There are two ways to adjust the LFO rate:
+
+* The LFO RATE knob on the front panel applies a rate multiplier to all LFOs equally.
+* Each LFO has an independent multiplier/divider setting, which can be changed separately.
+
+The final LFO rate is calculated by multiplying the base frequency, the LFO rate, and the multiplier/divider (unique to each cv out).
+
+NOTE: If you want to reset all the LFOs to the same phase, go to the main page and click the right encoder.
+
+== DELAY/FX Modes
+There are currently 4 major modes in Kali:
+
+* "Basic" mode contains a standard delay and a ping-pong delay. The standard delay has two submodes: "Linked" and "Unlinked". In "Linked" mode, the right delay is set as a ratio of the left delay. In "Unlinked" mode, the left and right delays are independent. The ping-pong delay bounces the sound between the left and right channels.
+* "Parvati" mode contains a "Chorus" submode and several variations of granular delays. The "Chorus" submode creates a detuned and modulated version of the audio signal, creating a thicker sound. The granular submodes break the audio signal into small grains and reassemble them at a different speed, creating a time-warping effect.
+* "Kali" mode contains digital distortion algorithms that are applied to the audio signal before it is passed through a standard delay.
+* "External Feedback" mode allows you to route the left output to another module (such as a filter), and then back into Kali's right input, before the signal is fed back into the delay line. This creates a feedback loop that can create a range of effects from subtle echoes to distorted and chaotic sounds.
+
+The right encoder changes the major mode.
+
+The "Delay Adj" knob just below the right encoder allows you to switch between different submodes of the major mode. Each submode has two settings that correspond to the "Meta 1" and "Meta 2" knobs. These settings are sensitive to the current mode and will behave differently depending on the mode you are in.
+
+To start, try the following settings in Basic mode:
+
+* Set "Meta 1" and "Meta 2" to their lowest settings.
+* Set "L Time" and "R Time" to 25%.
+* Set "Cutoff" to 75-100%.
+* Set "Feedback" to 50-90% (this may behave erratically in some modes).
+* Set "Wet/Dry" to 50%.
+
+Now, with some audio input, start adjusting the "Meta 1" and "Meta 2" knobs. In this mode, "Meta 1" fine-tunes the delay time, while "Meta 2" divides the delay time by a whole number.
+
+== Credits
+* Code: Joseph Misra (proswell)
+* Panel: Nathaniel Reeves (nkurence)
