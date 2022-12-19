@@ -140,6 +140,157 @@ To start, try the following settings in Basic mode:
 
 Now, with some audio input, start adjusting the "Meta 1" and "Meta 2" knobs. In this mode, "Meta 1" fine-tunes the delay time, while "Meta 2" divides the delay time by a whole number.
 
+== KALI Reference
+
+=== FX Modes
+
+These modes use META 1 and META 2 for algorithm specific settings, all other controls serve the same function unless noted otherwise.
+
+Knob positions are stored for each mode and submode as you are editing, and will be recalled. When you select a mode for the first time, positions are initialized to wherever knobs (or CV input) are set.
+
+== Basic Mode
+=== Basic & Ping-Pong
+|===
+|Meta 1|Meta 2
+
+|Fine Time Adjust|Sharp Time Divider
+|===
+
+M1 and M2 change delay time independently of the master l/r times other parts of kali use.  
+
+"Sharp Time Divider" Divides L Time and R Time by a whole number immediately, basic declicking is performed.
+
+=== Free & FreePong
+As above, but L Time and R Time are independent.
+
+== Parvati Mode 
+
+=== Chorus
+|===
+|Meta 1|Meta 2
+
+|Modulation Rate|Modulation Amplification   
+|===
+
+=== Devi
+|===
+|Meta 1|Meta 2
+
+|Grain Speed|Grain Speed Multiplier   
+|===
+
+Old school harmonizer / granular delay. 3 grains per channel running at slightly different speeds.
+
+NOTE: Previously called "Parvati"
+
+=== Knives
+|===
+|Meta 1|Meta 2
+
+|Grain Speed|Grain Speed Multiplier
+|===
+
+=== Shards
+|===
+|Meta 1|Meta 2
+
+|Grain Speed|Grain Speed Multiplier
+|===
+
+=== Splat
+|===
+|Meta 1|Meta 2
+
+|Grain Speed|Grain Speed Multiplier
+|===
+
+=== Gramma (Parvati + AM)
+|===
+|Meta 1|Meta 2
+
+|Grain Speed|Grain Speed Multiplier
+|===
+
+Gramma is the same algorithm as Devi above, but one of the control signals used in the algorithm is applied to amplitude as well.
+
+=== Grampa (Knives + AM)
+|===
+|Meta 1|Meta 2
+
+|Grain Speed|Grain Speed Multiplier
+|===
+
+Grampa is the same algorithm as Knives above, but one of the control signals used in the algorithm is applied to amplitude as well.
+
+== Kali (Distortion)
+=== Sin
+|===
+|Meta 1|Meta 2
+
+|Distortion Amount L|Distortion Amount R
+|===
+
+Sin is a sinusoidal waveshaper:
+
+`sin(in * PI_F * 20.f * Meta)`
+
+=== Satch
+|===
+|Meta 1|Meta 2
+
+|Threshold|L+R Gain
+|===
+
+Satch is a digital saturation algorithm that has quite a lot of gain and over the top feedback.
+
+=== Diode
+|===
+|Meta 1|Meta 2
+
+|Threshold|L+R Gain (Post)
+|===
+
+Diode is a simple rectifier:
+
+`in / (threshold + abs(in))`
+
+
+=== Fold
+|===
+|Meta 1|Meta 2
+
+|Threshold|L+R Gain (Post)
+|===
+
+Fold is a wavefolder:
+
+    `if (in > threshold || in < -threshold)`
+    `{`
+         `out = fabs(fabs(fmod(in - threshold, threshold * 4)) - threshold * 2) - threshold;`
+    `}`
+
+=== External Feedback Path
+
+Normally the feedback path only has a FIR cutoff filter in it. If you would like to experiment with putting analog filters or any other sort of modules in the feedback path, this is where to do it.
+
+```
+      +-------------------+
+      |                   |
+Left In ------------> Basic Delay (mono) ------------> Left Out
+      |                   |
+      |   YOUR FEEDBACK   |
+      |      PATH         |
+      |       HERE        |
+      |                   |
+Right In ------------> Wet + Dry ------------> Right Out
+      |                   |
+      +-------------------+
+```
+
+== Troubleshooting
+
+
+
 == Credits
 * Code: Joseph Misra (proswell)
 * Panel: Nathaniel Reeves (nkurence)
