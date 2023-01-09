@@ -1,3 +1,7 @@
+### 20230109 (0.999-1)
+* Removed DC filter on output, was cutting more low end than intended.
+* Fixed outputs 2R and 3R inversion.
+
 ### 20221209 (0.991-1)
 * Range adjustments in Parvati (granular) modes to stop screen stuttering
 * Feedback limit increased slightly in basic mode
