@@ -39,8 +39,66 @@ Here is the updated **Group 3** section in Markdown format with links to detaile
 ### Waveform  
 Defines the waveform used for the CV output. The available waveforms are defined by the `WAVE_LAST` constant in the oscillator class.  
 
+* Sin - Sine Wave
+* Tri - Triangle Wave
+* Saw - Saw Wave
+* Ramp - Ramp
+* [ ] - Pulse
+* Ptri - Polyblep (Band-limited) Triangle
+* PSaw - Polyblep (Band-limited) Saw
+* P[ ] - Polyblep (Band-limited) Pulse
+* Noise
+
 ### Mode  
 Selects the operating mode for the CV generator, such as standard oscillation, one-shot, or other modulation modes.  
+Here is the **LFO Mode Array** presented as a bulleted list with descriptions:
+
+- **Core**  
+  Standard low-frequency oscillation mode, generating continuous waveforms like sine, triangle, or saw.
+
+- **S+H** *(Sample and Hold)*  
+  Produces stepped random values by sampling input at regular intervals.
+
+- **T+H** *(Track and Hold)*  
+  Tracks the input signal until a trigger occurs, then holds the last value.
+
+- **RandRst** *(Random Reset)*  
+  Generates a random waveform that resets when triggered.
+
+- **RndShp** *(Random Shape)*  
+  Randomizes the shape or characteristics of the waveform for unpredictable modulation.
+
+- **Jitter**  
+  Adds subtle or chaotic random variations (jitter) to the waveform's timing or amplitude.
+
+- **Osc** *(Oscillator)*  
+  Operates like a basic oscillator for audio-rate modulation or frequency generation.
+
+- **Glacier**  
+  Extremely slow modulation rates, useful for very long, evolving LFO cycles.
+
+- **Clocks**  
+  Synchronizes the LFO to clock signals or divisions for precise timing.
+
+- **Follow**  
+  Follows the input signal's amplitude or shape, behaving like an envelope follower.
+
+- **Sidechain**  
+  Modulation responds dynamically to an external input, typically for ducking or rhythmic effects.
+
+#### Disabled in 2.0 beta temporarily.
+
+- **Envelope**  
+  Functions as an ADSR envelope generator for shaping modulation over time.
+
+- **Turing**  
+  Generates semi-random patterns that loop or evolve based on a controllable degree of randomness.
+
+- **Raw**  
+  Outputs raw, unfiltered modulation signals for further shaping or processing.
+
+- **MIDI**  
+  Responds to MIDI signals, allowing control over LFO parameters like rate or shape through MIDI messages.  
 
 ### Oneshot  
 When enabled, the waveform or envelope completes a single cycle and then stops. Useful for percussive modulation or envelope generation.  
