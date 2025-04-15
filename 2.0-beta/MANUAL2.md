@@ -1,5 +1,5 @@
-# WORKING ON THIS, SOME INNACURACIES
-
+# Manual Layout Draft
+A fair amount of details are incorrect here, but the structure is pretty good.
 
 # KALI User Manual
 
