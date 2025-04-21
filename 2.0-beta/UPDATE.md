@@ -23,8 +23,8 @@
 3. **Enter bootloader mode**
    - While holding down the BOOT button, connect the micro-USB cable to your computer
    - Release the BOOT button after connecting
-   - Successful bootloader entry is indicated by the right/left sync LED staying on
-   
+   - Successful bootloader entry is indicated by the right/left sync LED staying on. Color of LED may vary.
+    
    ![Sync LED indicator](https://user-images.githubusercontent.com/326734/189494472-ecba0036-2e82-45a8-8dbf-5607bd30f60e.png)
 
 4. **Connect to the programmer**
