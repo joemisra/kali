@@ -11,7 +11,8 @@
 ### Update Process
 
 1. **Download the firmware**
-   - [Download the latest Kali 2.0 beta firmware](https://github.com/joemisra/kali/2.0-beta/Kali_20250421_154311.bin.zip)
+   - [Download the latest Kali 2.0 beta firmware](
+   https://github.com/joemisra/kali/releases/tag/Beta)
    - Unzip the file if needed - you should see a Kali.bin file
 
 2. **Prepare for update**
