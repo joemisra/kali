@@ -6,6 +6,8 @@
 
 # Kali 2.0 Beta
 
+**[Update Procedure](UPDATE.md)**
+
 I have not finished all of the features I had wanted to add to this version, and some of the granular functions are still not re-implemented, but so much significant change is working I figured time to throw this out here while I finish up!
 
 You can flip through the CHANGELOG.md I will be working on a manual for this. This time w/ help from Claude so it will be easier to explore how things work now.
