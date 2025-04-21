@@ -2,27 +2,22 @@
 
 ### Update 
 
-[Download most recent Kali beta firmware from this repository](https://github.com/joemisra/kali/beta-2.0)
+You will need Chrome and a good micro-usb cable.
 
 **keep eurorack power off while using usb** 
 
-* [Download most recent Kali firmware from this repository](https://github.com/joemisra/kali/tree/main/firmware).
-
+[Download most recent Kali beta firmware from this repository](https://github.com/joemisra/kali/beta-2.0)
+* Unzip the firmware if it isn't already, you will see Kali.bin
 * In a Chrome browser window, navigate to the [Electrosmith Web Programmer](https://electro-smith.github.io/Programmer/). This will not work in Safari.
-
 * Once there, while holding down the BOOT button (circled below) connect the Daisy Patch Submodule on the back of Kali to your computer using a micro USB cable.
-
 ![IMG_7858](https://user-images.githubusercontent.com/326734/189494464-a1afc99d-b773-4440-bfa1-7d2296a3fbbe.png)
-
-* If you have successfully entered the bootloader, the right sync LED will be on.
-
+* If you have successfully entered the bootloader, the right/left sync LED will be on.
 ![IMG_7862](https://user-images.githubusercontent.com/326734/189494472-ecba0036-2e82-45a8-8dbf-5607bd30f60e.png)
-
-* Connect Daisy as a DFU device by clicking the "Connect" button at the top of the Web Programmer page
-
-* In the dialog box that opens, select "DFU in FS Mode" and then click "Connect"
-
-* Unzip the kali________.zip you downloaded, near the bottom of the programmer page will be an option to select a file from your computer, choose Kali.bin from the unzipped archive.
+* Connect Daisy as a DFU device by **clicking the "Connect" button** at the top of the Electrosmith Web Programmer page
+* In the dialog box that opens, select **"DFU in FS Mode"** and then click "Connect"
+* If this is successful, scroll down to the last section on the page
+* Click the button where it says **Choose File** and select the unzipped Kali.bin file.
+* Now you can click the **Program** button. (uploader_section.png)
 
 #### Troubleshooting
 
