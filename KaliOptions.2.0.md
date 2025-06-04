@@ -1,3 +1,7 @@
+**NOTE: this is Claude reading KaliOptions.cpp returning exact parameter ranges, these may end up changing, typically parameters are not removed, but some get added that may not be up to date.**
+
+
+
 Here is the updated **Group 3** section in Markdown format with links to detailed descriptions:
 
 ---
