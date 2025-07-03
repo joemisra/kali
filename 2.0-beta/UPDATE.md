@@ -11,8 +11,7 @@
 ### Update Process
 
 1. **Download the firmware**
-   - [Download the latest Kali 2.0 beta firmware](
-   https://github.com/joemisra/kali/releases/tag/Beta)
+   - [Download the latest Kali 2.0 beta firmware](https://github.com/joemisra/kali/releases/tag/v2.005)
    - Unzip the file if needed - you should see a Kali.bin file
 
 2. **Prepare for update**
@@ -37,9 +36,10 @@
    - Click "Choose File" and select the Kali.bin file you downloaded
    - Click the "Program" button and wait for the process to complete
    
-   ![Uploader Section](uploader_section.png)
+   <img width="536" alt="image" src="https://github.com/user-attachments/assets/d8002869-3017-41ba-969f-044a1d226faf" />
 
 ### Troubleshooting
+
 
 **If the Daisy Patch Submodule doesn't appear in the web programmer:**
 - Try a different micro-USB cable. Many cables (especially those included with chargers) only provide power and not data.
