@@ -1,763 +1,597 @@
-# Manual Layout Draft
-A fair amount of details are incorrect here, but the structure is pretty good.
+# Kali Firmware Manual
+*Created with assistance from Claude 4 Sonnet*  
+*https://claude.anthropic.com/chat/...*
 
-# KALI User Manual
+## Overview
 
-## Table of Contents
-
-1. Introduction
-   - About KALI
-   - Key Features
-
-2. Hardware Overview
-   - Front Panel Layout
-   - Inputs and Outputs
-   - Controls and Interface Elements
-
-3. User Interface Guide
-   - Common UI Elements & Navigation
-   - Screen Layout
-   - Basic Navigation Principles
-   - Universal Encoder Functions
-   - Control Knobs
-
-4. Basic Operation
-   - Navigation System
-   - Encoder Controls
-   - Operating Mode Overview
-
-5. Primary Operating Modes
-   - LFO Edit Mode
-     - LFO Parameters
-     - Waveform Selection
-     - Timing Controls
-   - DSP Edit Mode
-     - DSP Algorithms
-     - Parameter Controls
-     - Effect Types
-   - Options Mode
-     - System Settings
-     - Clock Configuration
-   - Presets Mode
-     - Saving/Loading Presets
-   - MIDI Mode
-     - MIDI Monitoring
-   - Debug Mode
-     - System Diagnostics
-
-6. Clock Synchronization System
-   - Clock Sources
-   - Timing Division/Multiplication
-   - Advanced Synchronization Techniques
-
-7. DSP Effects in Detail
-   - Delay-based Effects
-   - Granular/Texture Processing
-   - Distortion Algorithms
-   - Filtering Options
-
-8. LFO System in Detail
-   - LFO Waveform Types
-   - LFO Modes
-   - Signal Flow & Modulation Routing
-   - Cross-Modulation
-   - End-of-Cycle Actions
-
-9. Integration & Advanced Techniques
-   - Patching Examples
-   - Creative Applications
-   - Polyrhythmic Modulation
-   - Adaptive Effects
-   - Clock-Synchronized Buffer Scanning
-
-10. Connectivity
-    - Audio Routing
-    - CV & Gate Integration
-    - MIDI Implementation
-
-11. Preset Management
-    - Preset Types
-    - Saving & Recalling Presets
-    - Factory Presets
-
-12. Tips & Tricks
-    - Performance Techniques
-    - Creative Patching Ideas
-    - Troubleshooting
-
-13. Specifications
-    - Technical Details
-    - Power Requirements
-
-14. Support & Resources
-    - Firmware Updates
-    - Online Resources
-    - Contact Information
-
-## Introduction
-
-Thank you for purchasing the KALI Eurorack module by dsp.coffee! KALI is a powerful audio processing and modulation generating module that combines multi-mode delays, distortion effects, modulation sources, and clock synchronization capabilities in a compact Eurorack format. This manual will guide you through the features and operation of KALI.
-
-### About KALI
-
-KALI represents a new approach to Eurorack effects processing by combining sophisticated DSP algorithms with an intricately synchronized modulation system. At its core, KALI is a stereo multi-effects processor with six independent LFOs that can modulate virtually any parameter, all synchronized to a master clock.
+Kali is a powerful delay and modulation system built for the Daisy platform. At its core, Kali combines sophisticated delay algorithms with an extensive 6-oscillator LFO system, offering everything from classic delays to granular processing and complex modulation routing.
 
 ### Key Features
 
-- Versatile multi-mode DSP engine with delay, granular, and distortion algorithms
-- Six independent LFOs with extensive waveform and behavior options
-- Sophisticated clock synchronization system
-- Cross-modulation capabilities between LFOs
-- Multiple clock sources: internal, external gate, or MIDI
-- End-of-cycle actions for complex generative patterns
-- Comprehensive preset management
-- High-quality 48kHz, 24-bit audio processing
-- Intuitive interface with OLED display for visual feedback
-
-## Hardware Overview
-
-KALI is based on the Daisy Patch platform by Electro-Smith, offering high-quality digital signal processing with an intuitive interface.
-
-### Front Panel Layout
-
-The KALI front panel features a clean, organized layout with clear labels for all controls and connections.
-
-### Controls and Interface Elements
-
-- **OLED Display** - Shows current parameters, waveforms, and menus
-- **2 Encoders** - Navigation and parameter adjustment
-   - Left Encoder (E2) - Page navigation and parameter selection
-   - Right Encoder (E1) - Value editing and parameter selection
-- **10 Control Knobs**:
-  - META1, META2 - Multi-function controls that adapt to the current mode
-  - LFO RATE - Controls LFO speed
-  - L TIME, R TIME - Left and right delay times
-  - CUTOFF - Filter cutoff frequency
-  - FEEDBACK - Delay feedback amount
-  - MIX - Wet/dry balance
-  - LFO ADJUST - Selects/adjusts LFO parameters
-  - DELAY ADJUST - Fine-tunes delay parameters
-
-### Inputs and Outputs
-
-- **Gate Inputs** (2) - For clock sync and triggering functions
-- **Gate Outputs** (2) - For clock signals and trigger outputs
-- **CV Outputs** - For modulation signals from the LFOs
-- **Audio Inputs** (stereo) - For processing external audio
-- **Audio Outputs** (stereo) - For the processed signal
-
-## User Interface Guide
-
-The KALI interface is designed to provide deep functionality while maintaining an intuitive workflow. Understanding these common interaction patterns will help you navigate all aspects of the module.
-
-### Screen Layout
-
-The OLED display is your primary visual interface and typically shows:
-
-- **Top Section**: Current page/mode name and status indicators
-- **Middle Section**: Parameter visualization (waveforms, values)
-- **Bottom Section**: Current parameter values or additional information
-
-### Basic Navigation Principles
-
-- **Mode Selection**: The left encoder (E2) click cycles between major modes
-- **Parameter Selection**: Turn encoders to highlight different parameters
-- **Value Editing**: Click right encoder (E1) to toggle edit mode, then turn to adjust values
-- **Visual Indicators**: Parameters being edited will blink or appear highlighted
-- **Return to Default View**: After a period of inactivity, the display returns to the main view
-
-### Universal Encoder Functions
-
-**Left Encoder (E2)**:
-- **Single Click**: Navigate between major modes (LFO, DSP, Options, etc.)
-- **Turn**: When not in edit mode, scroll through available parameters
-- **Long Press**: Access secondary functions (varies by page)
-- **Double Click**: Not used in standard operation
-
-**Right Encoder (E1)**:
-- **Single Click**: Toggle edit mode for the selected parameter
-- **Turn**: Adjust selected parameter value when in edit mode
-- **Long Press**: Access modulation assignments (on relevant pages)
-- **Click While Editing**: Confirm value and exit edit mode
-
-### Control Knobs
-
-Physical knobs provide direct access to frequently used parameters:
-- Changes are reflected immediately on the display
-- In some modes, knobs may have context-specific functions
-- LFO ADJUST and DELAY ADJUST knobs have special functions depending on current mode
-
-## Basic Operation
-
-KALI operates through different pages that can be accessed by clicking and turning the encoders.
-
-### Navigation System
-
-The module uses a page-based navigation system, where each page represents a different operational mode. The current mode is always displayed at the top of the screen.
-
-### Encoder Controls
-
-- **Left Encoder (E2)**
-  - **Click** - Move between pages or toggle editing mode
-  - **Hold** - Enter special functions
-  - **Turn** - Navigate between parameters or pages
-
-- **Right Encoder (E1)**
-  - **Click** - Toggle edit mode for the selected parameter
-  - **Hold** - Access modulation settings
-  - **Turn** - Adjust parameter values
-
-### Operating Mode Overview
-
-KALI has six primary operating modes:
-
-1. **LFO Edit** - Configure oscillator/modulation settings
-2. **DSP Edit** - Adjust audio processing and effects
-3. **Options** - Global system settings
-4. **Presets** - Save and recall configurations
-5. **MIDI** - MIDI monitoring and settings
-6. **Debug** - System diagnostics and advanced settings
-
-## Primary Operating Modes
-
-### LFO Edit Mode
-
-KALI features 6 independent oscillators for modulation that can be configured in this mode.
-
-#### Navigation in LFO Edit Mode
-
-1. **Enter LFO Edit**: Click left encoder until "LFO" appears at top of screen
-2. **Select LFO Number**: Turn left encoder to choose which LFO (0-5) to configure
-3. **Navigate Parameters**: 
-   - Turn right encoder to cycle through LFO parameters (Waveform, Rate, etc.)
-   - Alternatively, use LFO ADJUST knob to quickly select parameters
-4. **Edit Parameter**: 
-   - Click right encoder to enter edit mode (parameter will blink)
-   - Turn right encoder to adjust value
-   - For some parameters, DELAY ADJUST knob provides fine-tuning
-5. **LFO Visualization**: Current LFO waveform is displayed in the center of the screen
-6. **Quick Selection**: The LFO ADJUST knob can directly select which LFO to edit
-
-#### LFO Parameters
-
-- **Waveform** - Sine, Triangle, Saw, Square, etc.
-- **Mode** - SyncStraight, Sample & Hold, Random, Turing, etc.
-- **Oneshot** - Toggle between continuous and one-shot mode
-- **Clock Multiplier/Divider** - Control LFO timing relative to master clock
-- **Polarity** - Unipolar, Bipolar, etc.
-- **Offset/Attenuate** - Adjust output range
-- **Phase Offset** - Shift starting phase
-- **ADSR** - Attack, Decay, Sustain, Release envelope controls
-- **FM/AM** - Frequency/Amplitude modulation from other LFOs
-
-### DSP Edit Mode
-
-Configure audio processing effects in this mode.
-
-#### Navigation in DSP Edit Mode
-
-1. **Enter DSP Edit**: Click left encoder until "DSP" appears at top of screen
-2. **Select DSP Mode**: First parameter is the DSP algorithm (Straight, PingPong, etc.)
-3. **Navigate Parameters**:
-   - Turn right encoder to move through parameters (P1-P4, distortion, etc.)
-   - Each DSP algorithm exposes different parameters with context-specific functions
-4. **Parameter Adjustment**:
-   - Click right encoder to enter edit mode for a parameter
-   - Turn to adjust value
-   - META1/META2 knobs often provide direct control of primary parameters
-5. **Visual Feedback**: The screen may show special visualizations based on the selected algorithm
-
-#### DSP Algorithms
-
-- **Delay Types**:
-  - Straight (Linked/Unlinked)
-  - Ping Pong (Linked/Unlinked)
-  - Resonator
-  - Chorus
-
-- **Granular/Texture Modes**:
-  - Parvati (granular processor)
-  - Shards (granular fragmentation)
-  - Knives (harsh granular cutting)
-  - Splat (granular scattering)
-  - Grampa/Gramma (vintage-sounding granulation)
-
-- **Distortion Algorithms**:
-  - Saturation
-  - Foldback
-  - Tanh
-  - Quantizer
-  - Diode Clipper
-  - Hard/Soft Clip
-  - Asymmetric
-  - Modulo
-
-### Options Mode
-
-Configure global settings for KALI's operation.
-
-#### Navigation in Options Mode
-
-1. **Enter Options**: Click left encoder until "OPT" appears at top of screen
-2. **Category Navigation**: Turn left encoder to move through option categories
-3. **Parameter Selection**: Turn right encoder to select a specific parameter
-4. **Value Adjustment**:
-   - Click right encoder to begin editing (value will highlight)
-   - Turn right encoder to change value
-   - Click again to confirm
-5. **Options Organization**: Options are grouped by function (Clock, Audio, System)
-
-#### System Settings
-
-- **Clock divisions and multipliers**
-- **Sync modes** (Internal, External, MIDI)
-- **Reverb parameters**
-- **Input/Output gains**
-- **Envelope follower settings**
-- **Filter mode** (Low-pass, High-pass, Band-pass)
-
-### Presets Mode
-
-Manage configuration presets for global settings, LFOs, and DSP effects.
-
-#### Navigation in Presets Mode
-
-1. **Enter Presets**: Click left encoder until "PRESETS" appears
-2. **Select Operation**: Turn right encoder to choose between Load/Save operations
-3. **Select Preset Type**: Choose between Global, LFO, or DSP presets
-4. **Preset Slot Selection**: Navigate to desired preset slot (0-32)
-5. **Confirm Action**: Click right encoder to execute the selected preset operation
-
-### MIDI Mode
-
-Monitor MIDI activity and MIDI clock information.
-
-#### Navigation in MIDI Mode
-
-1. **Enter MIDI Mode**: Click left encoder until "MIDI" appears
-2. **View MIDI Activity**: The screen displays recent MIDI events and status
-3. **Monitor Parameters**: 
-   - MIDI clock rate information is displayed
-   - Last received MIDI event details are shown
-4. **No Editable Parameters**: This mode is primarily for monitoring
-
-### Debug Mode
-
-Access system diagnostics and advanced settings.
-
-#### Navigation in Debug Mode
-
-1. **Enter Debug Mode**: Click left encoder until "Debug" appears
-2. **View System Information**: 
-   - Key system parameters are displayed
-   - Use right encoder to cycle through debug information pages
-3. **Special Functions**: Some diagnostic tools may be available by clicking right encoder
-4. **Clock Debug View**: Shows detailed timing information about the clock system
-
-## Clock Synchronization System
-
-KALI's clock synchronization system is a central feature that allows all modulation and timing to remain musically coherent.
-
-### Clock Sources
-
-KALI offers multiple clock synchronization options:
-
-- **Internal Clock** - Generated by KALI's internal clock generator
-- **External Clock** - Via Gate Input 1, for synchronizing with external clock sources
-- **MIDI Clock** - From MIDI input, for synchronizing with DAWs or MIDI gear
-
-### Timing Division/Multiplication
-
-Each LFO can have its own timing relationship to the master clock:
-
-- **Multipliers** - Speed up LFOs relative to the master clock (x1, x2, x3, etc.)
-- **Dividers** - Slow down LFOs relative to the master clock (÷2, ÷4, ÷8, etc.)
-- **PPQN Setting** - Pulses Per Quarter Note determines the resolution of the clock
-
-### Advanced Synchronization Techniques
-
-The power of KALI's modulation comes from how these timing divisions interact:
+- **Multi-Algorithm Delay Engine**: 15+ delay modes including basic delays, ping-pong, chorus, granular processing, resonators, and waveshaping
+- **6-Oscillator LFO System**: Independent LFOs with multiple waveforms, sync modes, and modulation capabilities
+- **Advanced Clock System**: Internal/external/MIDI clock sync with phase-locked loop outputs
+- **Extensive Modulation**: Cross-modulation between LFOs, envelope following, MIDI control, and external CV patching
+- **Real-time Control**: Dedicated knobs for all major parameters plus CV inputs
+- **Visual Feedback**: OLED display with waveform visualization and parameter monitoring
+
+### Signal Flow
 
 ```
-Master Clock (e.g., 120 BPM)
-   ↓
-LFO 1: x1 (quarter notes) → Controls delay time
-   ↓
-LFO 2: ÷4 (whole notes) → Adjusts filter cutoff
-   ↓
-LFO 3: x3 (eighth note triplets) → Modulates distortion
-   ↓
-LFO 4: x4 (16th notes) → Triggers grains
+Input → Delay Processing → Filter → Output
+  ↑           ↑              ↑
+  └─ LFO Modulation ────────┘
+  └─ Clock/Sync System
+  └─ MIDI/CV Control
 ```
 
-This clock hierarchy creates complex but musically coherent patterns that would be impossible with free-running LFOs.
-
-## DSP Effects in Detail
-
-KALI features a versatile multi-mode DSP engine capable of a wide range of sound processing techniques.
-
-### Delay-based Effects
-
-- **Straight Delay** - Traditional delay with separate left and right times
-  - **Linked Mode** - Left and right channels have synchronized delay times
-  - **Unlinked Mode** - Independent control over left and right delay times
-
-- **Ping Pong Delay** - Signal bounces between left and right channels
-  - **Linked Mode** - Symmetric ping-pong effect
-  - **Unlinked Mode** - Asymmetric ping-pong with different timing for each bounce
-
-- **Resonator** - Creates pitched resonances from delay feedback
-  - Produces metallic, bell-like tones through pitched delay networks
-  - Can be tuned to specific musical intervals
-
-- **Chorus** - Creates subtle pitch variations for thickening sounds
-  - **Simple Chorus** - Basic chorus effect with minimal controls
-  - **Chorus** - Full-featured chorus with depth and rate controls
-
-### Granular/Texture Processing
-
-- **Parvati** - Core granular processor
-  - Controls for grain size, density, position, and pitch
-
-- **Shards** - Granular fragmentation
-  - Creates glassy, fragmented textures with angular transitions
-
-- **Knives** - Harsh granular cutting
-  - Produces aggressive, cutting textures with sharp transitions
-
-- **Splat** - Granular scattering
-  - Spreads grains across the stereo field in cloud-like formations
-
-- **Grampa/Gramma** - Vintage-sounding granulation
-  - Emulates the character of early granular processors with lower fidelity
-
-### Distortion Algorithms
-
-- **Saturation** - Smooth, analog-style distortion
-  - Gradually increases harmonics as input level increases
-
-- **Foldback** - Creates complex harmonic content
-  - Signal "folds back" when it exceeds a threshold, creating complex waveshaping
-
-- **Tanh** - Mathematical distortion based on hyperbolic tangent
-  - Provides smooth, symmetrical clipping
-
-- **Quantizer** - Reduces bit depth for lo-fi effects
-  - Creates stepped distortion similar to bit reduction
-
-- **Diode Clipper** - Emulates analog diode distortion
-  - Asymmetric clipping similar to guitar pedals
-
-- **Hard/Soft Clip** - Simple clipping distortion
-  - **Hard Clip** - Aggressively clips signal at threshold
-  - **Soft Clip** - Gradually rounds off peaks
-
-- **Asymmetric** - Different clipping for positive and negative signal components
-  - Creates even harmonics for a "tube-like" character
-
-- **Modulo** - Mathematical modulo operation on the signal
-  - Creates unique aliasing and digital artifacts
-
-### Filtering Options
-
-A multimode filter can be applied to shape the frequency content:
-
-- **Low-pass** - Allows frequencies below cutoff to pass
-- **High-pass** - Allows frequencies above cutoff to pass
-- **Band-pass** - Allows a band of frequencies around cutoff to pass
-
-## LFO System in Detail
-
-KALI's modulation system is built around six independent low-frequency oscillators (LFOs) that can synchronize with clock sources and modulate both DSP parameters and each other.
-
-### LFO Waveform Types
-
-KALI features comprehensive waveform options for each LFO:
-
-- **Sine** - Smooth, continuous modulation
-- **Triangle** - Linear ramps with sharp corners
-- **Saw** - Rising ramp with instant fall
-- **Ramp** - Falling slope with instant rise
-- **Square** - Alternating high/low states
-- **Pulse Variants** - Modified square waves with variable pulse width
-- **Noise** - Random fluctuations
-
-### LFO Modes
-
-The LFO modes fundamentally change how each modulator behaves:
-
-- **SyncStraight** - Traditional LFO synchronized to master clock
-- **SyncSH (Sample & Hold)** - Captures and holds random values at clock-synced intervals
-- **SyncTH (Track & Hold)** - Similar to S&H but follows input while gate is high
-- **RandReset** - Resets phase randomly based on probability settings
-- **RandShape** - Randomly changes waveform at the end of cycles
-- **Turing** - Algorithmic sequencer that generates patterns with adjustable "probability"
-- **Wavetable** - Reads through user-defined tables of 16 values
-- **Jitter** - Adds controlled randomness to timing
-- **FeedbackFollower** - Uses audio envelope to control modulation depth
-- **Sidechain** - Attenuates modulation based on audio input
-
-### Signal Flow & Modulation Routing
-
-#### LFO Output Shaping
-
-Before modulating parameters, each LFO's output can be shaped by:
-
-- **Polarity Settings**:
-  - **Unipolar+** (0 to +100%)
-  - **Bipolar** (-100% to +100%)
-  - **Unipolar-** (-100% to 0%)
-  - **Inverted** (flips the waveform)
-
-- **Offset** - Shifts the center point of modulation
-- **Attenuate** - Controls the modulation depth
-
-### Cross-Modulation
-
-LFOs can form complex relationships by modulating each other:
-
-- **FM (Frequency Modulation)** - One LFO controls another's rate
-- **AM (Amplitude Modulation)** - One LFO controls another's depth
-
-The amount of this cross-modulation can be positive or negative (-100% to +100%), allowing for both reinforcement and cancellation effects.
-
-### End-of-Cycle Actions
-
-When an LFO completes a cycle, it can trigger special events:
-
-- **Restart** - Reset another LFO
-- **Halt** - Stop another LFO
-- **Toggle** - Switch another LFO on/off
-- **Flip** - Invert another LFO's polarity
-- **RandWave** - Change another LFO's waveform randomly
-- **Scramble** - Randomize multiple LFO parameters
-- **Teleport** - Jump to a specific phase
-
-## Integration & Advanced Techniques
-
-### Patching Examples
-
-#### Basic Rhythmic Delay
-
-1. Set master clock to sync with your system (Internal, External, or MIDI)
-2. Select Straight Delay in DSP Edit mode
-3. Set LFO 1 to Square wave, SyncStraight mode, x1 multiplier
-4. Route LFO 1 to modulate Left Delay Time
-5. Set LFO 2 to Square wave, SyncStraight mode, x2 multiplier
-6. Route LFO 2 to modulate Right Delay Time
-7. Result: Rhythmic delay pattern that follows your master clock
-
-#### Evolving Granular Texture
-
-1. Select Parvati in DSP Edit mode
-2. Set LFO 1 to Sine wave, SyncStraight mode, ÷4 divider
-3. Route LFO 1 to modulate grain size
-4. Set LFO 2 to Triangle wave, SyncStraight mode, x3 multiplier
-5. Route LFO 2 to modulate position
-6. Set LFO 3 to Sample & Hold mode, x4 multiplier
-7. Route LFO 3 to modulate pitch
-8. Result: Evolving granular texture with shifting character but consistent timing
-
-### Creative Applications
-
-#### Evolving Delay Patterns
-
-By connecting LFOs to delay parameters:
-
-- **LFO 1** (slow triangle) → **Left Delay Time** = Gradually shifting echoes
-- **LFO 2** (16th notes, square) → **Right Delay Time** = Rhythmic delay jumps
-- **LFO 3** (random) → **Feedback** = Unpredictable decay patterns
-
-#### Dynamic Granular Textures
-
-In granular modes like Parvati or Shards:
-
-- **LFO 1** (sine) → **Grain Size** = Breathing texture
-- **LFO 2** (one-shot envelope) → **Density** = Bursts of grains triggered by gate input
-- **LFO 3** (clock-synced) → **Position** = Rhythmic scanning through the buffer
-- **LFO 4** (FM from LFO 1) → **Pitch** = Correlated pitch variations
-
-#### Rhythmic Distortion
-
-For aggressive sound design:
-
-- **LFO 1** (clock-divided square) → **Distortion Algorithm** = Switching between different types
-- **LFO 2** (sample & hold) → **Distortion Amount** = Stepped distortion changes
-- **LFO 3** (sine with EOC reset) → **Filter Cutoff** = Filtered distortion sweeps
-
-### Polyrhythmic Modulation
-
-Create complex evolving patterns with multiple time signatures:
-
-1. LFO 1: 3/4 time division (dotted eighth notes)
-2. LFO 2: 4/4 time division (quarter notes)
-3. LFO 3: 5/4 time division (quintuplet pattern)
-
-These will phase against each other, creating evolving patterns that repeat only after extended periods.
-
-### Adaptive Effects
-
-Using FeedbackFollower and Sidechain modes:
-
-1. Configure an LFO in FeedbackFollower mode
-2. Assign it to control reverb or delay mix
-3. Louder passages will drive more modulation
-4. Result: Dynamic effects that respond to your playing
-
-### Clock-Synchronized Buffer Scanning
-
-In delay and granular modes, the synchronized LFOs can scan through the delay buffer at musically relevant intervals. For example:
-
-1. Set a basic 1-second delay
-2. Use an LFO at 1/4 speed to scan through the buffer
-3. Add a second LFO at 1/16 speed to create micro-variations
-4. Use EOC actions to reset phases at specific points
-
-## Connectivity
-
-### Audio Routing
-
-KALI features stereo inputs and outputs for audio processing:
-
-- **Audio Inputs (L/R)** - Connect external audio sources to be processed
-- **Audio Outputs (L/R)** - Connect to your mixer, other modules, or audio interface
-
-For maximum flexibility, you can also:
-- Use a single mono input which will be processed in stereo
-- Self-patch by connecting outputs back to inputs for feedback effects
-
-### CV & Gate Integration
-
-- **Gate Inputs (2)**:
-  - **Gate 1** - Often used for clock sync
-  - **Gate 2** - Can trigger the Freeze function or other features
-
-- **Gate Outputs (2)**:
-  - Output clock signals derived from internal clock
-  - Can be used to sync other modules
-
-- **CV Outputs**:
-  - Transmit modulation signals from the LFOs
-  - Can modulate parameters on other modules
-
-### MIDI Implementation
-
-KALI accepts MIDI data for clock synchronization and parameter control:
-
-- **MIDI Clock** - Synchronize KALI's timing to external MIDI equipment
-- **CC Messages**:
-  - CC21: Controls DSP Parameter 1
-  - CC22: Controls DSP Parameter 2
-  - CC23: Controls DSP Parameter 3
-  - CC24: Controls DSP Parameter 4
-- **Note On/Off** - Can be used to trigger functions (varies by firmware version)
-
-## Preset Management
-
-KALI can store and recall presets for different aspects of its configuration.
-
-### Preset Types
-
-- **Global Presets** - Save all settings including LFOs and DSP
-- **LFO Presets** - Save just the LFO configurations
-- **DSP Presets** - Save just the DSP effect settings
-
-### Saving & Recalling Presets
-
-To save a preset:
-1. Navigate to the appropriate page
-2. Select the "Save Preset" option
-3. Choose a preset slot (0-32)
-4. Confirm save
-
-To load a preset:
-1. Navigate to the appropriate page 
-2. Select the "Load Preset" option
-3. Choose a preset slot
-4. Confirm load
-
-### Factory Presets
-
-KALI comes with factory presets that demonstrate various capabilities:
-- Basic delay effects
-- Complex modulation examples
-- Granular textures
-- Rhythmic patterns
-
-## Tips & Tricks
-
-### Performance Techniques
-
-- **Use Gate Input 2** to trigger the Freeze function for glitching effects
-- **Try different clock divisions** to create polyrhythmic patterns
-- **Combine different LFO modes** for complex, evolving modulation
-- **Use one-shot LFOs** triggered by gates for envelope-like behavior
-- **Experiment with cross-modulation** by setting one LFO to modulate another
-
-### Creative Patching Ideas
-
-- **Feedback patching**: Route KALI's outputs back to its inputs for self-generative sounds
-- **CV control**: Use external CV to modulate KALI's parameters alongside internal LFOs
-- **Clock division**: Send KALI's clock outputs to other modules for synchronized systems
-- **Audio-rate modulation**: Try using audio-rate signals as modulation sources
-- **Gate sequencing**: Use a gate sequencer into Gate Input 2 for rhythmic parameter changes
-
-### Troubleshooting
-
-- **Clock sync issues?** Use the Debug page to monitor clock timing
-- **Distortion too extreme?** Check the Input Gain in Options mode
-- **LFOs not syncing?** Verify the correct sync mode is selected
-- **Parameters jumping unexpectedly?** Check for active modulation assignments
-- **Display turning off?** This is normal after period of inactivity; touch an encoder to wake
-
-## Specifications
-
-### Technical Details
-
-- **Audio**:
-  - Sample Rate: 48kHz
-  - Bit Depth: 24-bit
-  - Latency: <1ms
-  - Frequency Response: 20Hz-20kHz
-
-- **Inputs & Outputs**:
-  - 2 Audio Inputs (3.5mm TS/TRS)
-  - 2 Audio Outputs (3.5mm TS/TRS)
-  - 2 Gate Inputs (3.5mm TS)
-  - 2 Gate Outputs (3.5mm TS)
-  - Multiple CV Outputs (3.5mm TS)
-
-- **Controls**:
-  - 10 Potentiometers
-  - 2 Rotary Encoders with Push Buttons
-  - OLED Display (128x32)
-
-### Power Requirements
-
-- **Format**: Eurorack
-- **Width**: 26HP
-- **Depth**: 25mm
-- **Power**: +12V DC, 150mA
-
-## Support & Resources
-
-### Firmware Updates
-
-KALI's firmware can be updated to add new features and fix bugs. Visit the dsp.coffee website for the latest firmware and update instructions.
-
-### Online Resources
-
-- **Official Website**: [dsp.coffee](https://dsp.coffee)
-- **User Forum**: Connect with other KALI users to share patches and techniques
-- **Video Tutorials**: Step-by-step guides to KALI's features
-- **Patch Library**: Download and share preset configurations
-
-### Contact Information
-
-For technical support, questions, or feedback:
-- Email: support@dsp.coffee
-- Social Media: @dspcoffee
+The system processes audio through selectable delay algorithms, with extensive modulation from the 6-LFO system. A sophisticated clock system provides sync capabilities, while real-time visual feedback keeps you informed of all parameters.
 
 ---
 
-Thank you for choosing KALI! We hope this manual helps you unlock its full potential.`
+## Complete Options Reference
+
+This section provides a comprehensive reference for every option in Kali, organized by category with explanations of their purpose and typical use cases.
+
+### Global Options Reference
+
+| Option | Range | Default | Purpose |
+|--------|--------|---------|---------|
+| **LFO Rate Multiplier** | 1-255 | 24 | Global speed control for all LFOs. Allows quick tempo changes without adjusting individual LFO rates. Useful for live performance tempo shifts. |
+| **Left Clock PPQN** | 2-127 | 24 | PPQN setting for left clock output. Determines subdivision: 4=quarters, 8=eighths, 16=sixteenths, 24=MIDI standard. Essential for syncing external gear. |
+| **Right Clock Rate Multiplier** | 1-16 | 1 | Clock division/multiplication for right output relative to left. Creates polyrhythmic clock relationships for complex sequencing setups. |
+| **External CV Clock PPQN** | 1-127 | 1 | Defines pulses-per-quarter-note when syncing to external CV clock. Must match your external clock source for proper sync. Critical for Eurorack integration. |
+| **Sync Mode** | 0-2 | 0 | Master clock source selection. 0=Internal (self-clocked), 1=External CV (Gate 1), 2=MIDI Clock. Determines what drives the entire timing system. |
+| **Sync Button Mode** | 0-1 | 0 | Gate Input 1 behavior. 0=Clock trigger input, 1=Reset all LFO phases. Switch based on whether you need clock sync or manual reset control. |
+| **Freeze Button Mode** | 0-1 | 1 | Gate Input 2 behavior. 0=Freeze delay (stops writing, mutes wet), 1=System reset. Choose based on performance needs. |
+| **Use Allpass** | 0-1 | 1 | Enables allpass filtering in feedback path. Creates smoother, more musical feedback. Disable for harsher, more aggressive feedback tones. |
+| **Reverb Wet Send** | 0-50 | 0 | Amount of delay output sent to reverb (currently disabled). Reserved for future reverb implementation. |
+| **Reverb Dry Send** | 0-50 | 0 | Amount of dry input sent to reverb (currently disabled). Reserved for future reverb implementation. |
+| **Reverb Feedback** | 50-99 | 85 | Reverb feedback amount (currently disabled). Reserved for future reverb implementation. |
+| **Reverb Damp** | 1000-19000 Hz | 7500 | Reverb damping frequency (currently disabled). Reserved for future reverb implementation. |
+| **Input Gain** | 0-255 | 215 | Input gain control. 215=0dB reference. Lower values reduce input sensitivity. Adjust if input is too hot or too quiet. |
+| **Output Gain** | 0-255 | 255 | Output gain control. 255=maximum output. Reduce if output is clipping or too loud for your system. |
+| **Input Width** | 0-1 | 1 | Stereo processing mode. 0=Sum to mono, 1=True stereo. Use mono for centered processing, stereo for width effects. |
+| **Invert Encoders** | 0-1 | 0 | Reverses encoder direction. Enable if clockwise feels like it should go the other direction. Hardware-dependent setting. |
+| **Enable Debug Info** | 0-1 | 1 | Shows debug pages and additional system information. Enable for troubleshooting or development work. |
+| **Global Preset Load** | 0-32 | 0 | Load complete system state from preset slot. Recalls all settings, LFOs, and DSP configuration. |
+| **Global Preset Save** | 0-32 | 0 | Save current system state to preset slot. Stores everything for instant recall. |
+
+### DSP Options Reference
+
+| Option | Range | Default | Purpose |
+|--------|--------|---------|---------|
+| **Mode** | 0-6 | 1 | Primary delay algorithm selection. Each mode has different sonic characteristics and use cases. See DSP Modes section for details. |
+| **Parameter 1** | 0-100 | 0 | Algorithm-specific control. Function varies by DSP mode. |
+| **Parameter 2** | 0-100 | 0 | Algorithm-specific control. Function varies by DSP mode. |
+| **Parameter 3** | 0-100 | 0 | Algorithm-specific control. Function varies by DSP mode. |
+| **Parameter 4** | 0-100 | 0 | Algorithm-specific control. Function varies by DSP mode. |
+| **Distortion Algorithm** | 0-7 | 0 | Selects the distortion algorithm (see Distortion System). |
+| **Distortion Amount** | 0-99 | 0 | Distortion intensity. |
+| **Distortion Target** | 0-3 | 0 | Where distortion is applied: Off/Dry/Wet/Both. |
+| **Distortion Trim** | 0.0-1.0 | 1.0 | Post-distortion trim to control level. |
+| **Filter** | 0-2 | 0 | Selects FIR/IIR/Off for additional filtering. |
+| **Delay Range** | 0-4 | 1 | Selects delay time range preset (see Delay Range Presets). |
+| **DSP Preset Load** | 0-32 | 0 | Load DSP configuration preset. |
+| **DSP Preset Save** | 0-32 | 0 | Save current DSP configuration. |
+| **Distortion Algorithm** | 0-8 | 0 | Distortion type selection. Each algorithm provides different harmonic characteristics. See Distortion section for details. |
+| **Distortion Amount** | 0-99 | 0 | Distortion intensity. Higher values = more harmonic content and saturation. Start low and increase to taste. |
+| **Distortion Target** | 0-3 | 0 | Where distortion is applied. 0=Off, 1=Input only, 2=Output only, 3=Both. Affects tone and gain staging. |
+| **Distortion Trim** | 0.0-1.0 | 1.0 | Post-distortion gain reduction. Compensates for distortion gain increase. Prevents clipping and maintains levels. |
+| **DSP Preset Load** | 0-32 | 0 | Load DSP configuration from preset. Recalls mode, parameters, and distortion settings only. |
+| **DSP Preset Save** | 0-32 | 0 | Save current DSP configuration. Stores DSP-specific settings for recall. |
+
+### LFO Options Reference
+
+| Option | Range | Default | Purpose |
+|--------|--------|---------|---------|
+| **Waveform** | 0-9 | 0 | Basic oscillator shape. Each waveform has different harmonic content and modulation character. |
+| **LFO Mode** | 0-13 | 0 | Fundamental LFO behavior. Changes how the LFO responds to sync, triggers, and other inputs. See LFO Modes section. |
+| **Oneshot** | 0-1 | 0 | Single-cycle mode. LFO runs once per trigger instead of continuously cycling. Useful for envelope-style modulation. |
+| **Multiply L Time** | 1-100 | 1 | Primary frequency multiplier relative to left delay. |
+| **Divide Numerator** | 1-1000 | 1 | Frequency divider/multiplier. |
+| **Polarity** | 0-3 | 1 | Output voltage range. 0=Unipolar+, 1=Bipolar, 2=Unipolar-, 3=Inverted bipolar. Match to destination module requirements. |
+| **Adjust** | 0.0-1.0 | 0.0 | Multi-function parameter. Changes meaning based on LFO mode. Often controls sensitivity, rate fine-tuning, or effect intensity. |
+| **Offset** | -2048 to +2048 | 0 | DC offset added before scaling. Shifts the LFO center point. Useful for biasing modulation around specific values. |
+| **Attenuate** | 1-100% | 100 | Output amplitude scaling. Reduces LFO depth without changing other parameters. Essential for subtle modulation. |
+| **Phase Offset** | 0-360° | 0 | Phase relationship to other LFOs. Creates polyrhythmic patterns and stereo effects when LFOs are related. |
+| **Trigger/Reset** | 0-2 | 0 | External trigger source. 0=None, 1=Gate 1, 2=Gate 2. Allows manual or clock-driven LFO reset. |
+| **Offset Cal** | -2048 to +2047 | 0 | Hardware calibration offset. Fine-tunes CV output accuracy. Adjust if CV outputs don't match expected voltages. |
+| **Attenuate Cal** | 1-100% | 100 | Hardware calibration scaling. Fine-tunes CV output range. Adjust if CV outputs don't reach full range. |
+| **ADSR Attack** | 0.0-10.0s | 0.0 | Envelope attack time (Envelope mode). How quickly envelope rises when triggered. |
+| **ADSR Decay** | 0.0-10.0s | 0.0 | Envelope decay time (Envelope mode). How quickly envelope falls from peak to sustain. |
+| **ADSR Sustain** | 0.0-1.0 | 0.5 | Envelope sustain level (Envelope mode). Hold level while gate is active. |
+| **ADSR Release** | 0.0-10.0s | 0.2 | Envelope release time (Envelope mode). How quickly envelope falls when gate released. |
+| **EOC Action** | 0-7 | 0 | End-of-cycle behavior. What happens when LFO completes one cycle. Creates complex modulation interactions. |
+| **EOC Target** | 0-10 | 0 | Which LFO receives end-of-cycle action. Enables one LFO to control another's behavior. |
+| **FM Source** | 0-10 | 0 | Which LFO provides frequency modulation. Creates complex, evolving modulation patterns through cross-modulation. |
+| **FM Amount** | -100% to +100% | 0 | Frequency modulation depth. Positive/negative values create different modulation characters. |
+| **AM Source** | 0-10 | 0 | Which LFO provides amplitude modulation. Creates tremolo and dynamic modulation effects. |
+| **AM Amount** | -100% to +100% | 0 | Amplitude modulation depth. Controls how much AM source affects output level. |
+| **LFO Preset Load** | 0-32 | 0 | Load LFO configuration from preset. Recalls all settings for this specific LFO. |
+| **LFO Preset Save** | 0-32 | 0 | Save current LFO configuration. Stores this LFO's settings for future recall. |
+
+### Why These Options Exist
+
+**Hardware Compatibility**: Options like encoder inversion and calibration settings accommodate different hardware implementations and manufacturing tolerances.
+
+**Performance Control**: Preset systems, quick adjust knobs, and direct CV control enable live performance without menu diving.
+
+**Integration Flexibility**: Multiple sync modes, PPQN settings, and polarity options ensure Kali works with any setup from standalone to complex modular systems.
+
+**Creative Depth**: Cross-modulation options, multiple LFO modes, and algorithm parameters provide deep creative possibilities while maintaining intuitive operation.
+
+**Future Expansion**: Reserved parameters and disabled options (like reverb settings) provide upgrade paths without requiring hardware changes.
+
+**System Optimization**: Range settings, calibration options, and processing modes allow optimization for different use cases and signal levels.
+
+---
+
+## Hardware Interface
+
+### Main Controls
+- **8 Knobs**: Meta1, Meta2, LFO Rate, Time L, Time R, Cutoff, Feedback, Mix
+- **2 Encoders**: Left (navigation), Right (parameter editing)
+- **2 CV Inputs**: LFO Adjust, Delay Adjust (with dedicated knobs)
+- **2 Gate Inputs**: Sync/Trigger, Freeze/Reset
+- **Audio I/O**: Stereo input/output
+- **6 CV Outputs**: 4 from LFOs 1-4, 2 from LFOs 5-6
+- **2 Gate Outputs**: Phase-locked clock outputs
+- **MIDI**: Full MIDI I/O with clock sync
+
+### Display Navigation
+
+Kali uses a sophisticated encoder interface with multiple interaction methods:
+
+#### Encoder Actions
+- **Turn**: Rotate encoder clockwise/counterclockwise
+- **Click**: Quick press and release
+- **Hold**: Press and hold (400ms+ triggers hold state)
+- **Hold + Turn**: Turn encoder while holding down
+- **Both Encoders Held**: Press and hold both encoders simultaneously
+
+#### Left Encoder (Navigation)
+- **Turn**: Navigate between main pages (LFO Edit → Options → DSP Edit → Presets → MIDI → Debug)
+- **Click**: Context-dependent action:
+  - **LFO Edit**: Toggle between editing LFO selection vs. parameter values
+  - **DSP Edit**: Jump to Debug page
+  - **Options**: Jump to DSP Edit page
+  - **Debug**: Reset to factory defaults
+- **Hold**: Access secondary functions (varies by page)
+- **Hold + Turn**: Navigate through pages while in hold mode
+
+#### Right Encoder (Parameter Control)
+- **Turn**: 
+  - **LFO Edit**: Navigate LFO parameters OR edit parameter values (depending on mode)
+  - **Options/DSP**: Navigate options OR edit values (depending on edit state)
+  - **Debug**: Select debug display type
+- **Click**: Toggle edit mode (enables parameter value editing)
+- **Hold**: Enter modulation editing mode (400ms+ hold time)
+- **Hold + Turn**: Edit parameters while in hold mode
+
+#### Special Combinations
+- **Both Encoders Held**: Save current settings to memory
+- **Right Encoder Hold + Freeze**: Reset all oscillators and system state
+
+#### Page-Specific Behaviors
+
+**LFO Edit Page:**
+- Left encoder selects which LFO (1-6) to edit
+- Right encoder navigates parameters and edits values
+- Click left encoder to toggle between LFO selection and parameter editing
+- Click right encoder to enter/exit value editing mode
+- LFO Adjust knob provides direct access to current LFO's Adjust parameter
+
+**Options/DSP Pages:**
+- Left encoder navigates between pages
+- Right encoder navigates options and edits values
+- Edit state determines whether turning right encoder selects options or changes values
+
+**Debug Pages:**
+- Left encoder cycles through debug display types
+- Right encoder changes debug information shown
+- Left click resets to factory defaults
+- Right click saves current settings
+
+---
+
+## Global Options
+
+Access global options by navigating to the OPTIONS page with the left encoder.
+
+### Clock and Sync Options
+
+#### LFO Rate Multiplier (1-255)
+Global multiplier applied to all LFO rates. Higher values increase all LFO speeds proportionally.
+
+#### Left Clock Rate Multiplier (2-127, default: 24)
+Sets the PPQN (Pulses Per Quarter Note) for the left clock output. Standard values:
+- **4**: Quarter notes
+- **8**: Eighth notes  
+- **16**: Sixteenth notes
+- **24**: MIDI standard (sixteenth note triplets)
+
+#### Right Clock Rate Multiplier (1-16, default: 1)
+Clock divider/multiplier for the right output relative to the left clock.
+
+#### External CV Clock PPQN (1-127, default: 24)
+Defines how many external CV pulses equal one quarter note when using external clock sync.
+
+#### Sync Mode (Internal/External CV/MIDI)
+- **Internal**: Use internal clock generator
+- **External CV**: Sync to Gate Input 1
+- **MIDI**: Sync to incoming MIDI clock
+
+#### Sync Button Mode (Trigger/Reset)
+Sets Gate Input 1 behavior:
+- **0 (Trigger)**: Acts as clock input
+- **1 (Reset)**: Resets LFO phases
+
+#### Freeze Button Mode (Freeze/Reset)
+Sets Gate Input 2 behavior:
+- **0 (Freeze)**: Freezes delay buffer, mutes wet signal
+- **1 (Reset)**: Resets system state
+
+### Audio Options
+
+#### Use Allpass (On/Off, default: On)
+Enables allpass filtering in the feedback path for smoother, more musical feedback behavior.
+
+#### Input Width (Mono/Stereo, default: Stereo)
+- **0 (Mono)**: Sum inputs to mono before processing
+- **1 (Stereo)**: Maintain stereo separation
+
+#### ADC/DAC Attenuation (0-255)
+Input and output gain control. 215 = 0dB, lower values reduce gain.
+
+### System Options
+
+#### Invert Encoders (Off/On)
+Reverses encoder rotation direction (useful for different encoder types).
+
+#### Enable Debug Info (Off/On)
+Shows additional debug pages and information.
+
+#### Preset Options
+Load/Save global presets (0-32).
+
+---
+
+## DSP Options
+
+Navigate to DSP EDIT page to access delay algorithm settings.
+
+### Core DSP Settings
+
+#### Mode (0-6)
+Selects the primary delay algorithm:
+
+**Basic Delays:**
+- **0 - Basic**: Classic stereo delay
+- **1 - Ping Pong**: Alternating left/right delay
+- **2 - Unlinked**: Independent left/right delay times
+- **3 - Ping Pong Unlinked**: Alternating delay with independent timing
+
+**Modulated Delays:**
+- **4 - Resonator**: MIDI-note tuned delays for harmonic effects
+- **5 - Chorus**: Classic chorus with LFO modulation
+- **6 - Knuth**: Crystal-style delay with sharp playback jumps
+
+*Note: Additional modes (Granular, Waveshaping, etc.) are currently being rewritten and temporarily disabled.*
+
+#### Delay Range Presets
+- **Precision (0)**: ~1–500 ms
+- **Studio (1)**: ~10 ms–2 s
+- **Ambient (2)**: ~50 ms–8 s
+- **Looper (3)**: ~100 ms–20 s
+- **Experimental (4)**: ~1 ms–30 s
+
+In external sync modes, the working delay range is dynamically adjusted to musical divisions of the incoming tempo.
+
+#### Parameters 1-4 (0-100)
+Algorithm-specific parameters that change function based on selected mode:
+
+**Basic Mode:**
+- **P1-P4**: Currently unused
+
+**Chorus Mode:**
+- **P1**: Modulation frequency multiplier (0-100)
+- **P2**: Stereo spread amount (0-100)
+- **P3-P4**: Currently unused
+
+**Knuth Mode:**
+- **P1**: Scan frequency ratio (0-100)
+- **P2**: Modulation depth (0-100)
+- **P3-P4**: Currently unused
+
+**Resonator Mode:**
+- **P1-P4**: Currently unused (MIDI note control)
+
+### Distortion System
+
+The distortion system in Kali is available across all delay modes and provides additional harmonic shaping. The distortion can be applied to the dry input signal, the wet delay output, or both.
+
+#### Distortion Algorithm (0-7)
+Eight distortion algorithms are available:
+
+- **0 - Sine**
+- **1 - Fold**
+- **2 - Tanh**
+- **3 - Quant**
+- **4 - Diode**
+- **5 - HardClip**
+- **6 - SoftClip**
+- **7 - Modulo**
+
+#### Distortion Amount (0-99)
+Controls the intensity of the selected distortion algorithm. Higher values increase the amount of distortion applied.
+
+#### Distortion Target (0-3)
+Determines where in the signal chain the distortion is applied:
+- **0 (Off)**: No distortion applied
+- **1 (Dry)**: Distortion applied to the input signal before delay processing
+- **2 (Wet)**: Distortion applied to the delay output after processing  
+- **3 (Both)**: Distortion applied to both input and output signals
+
+#### Distortion Trim (0.0-1.0)
+Output gain control applied after distortion processing to prevent clipping and maintain consistent levels. Lower values reduce the output level proportionally.
+
+---
+
+## LFO System
+
+The heart of Kali's modulation capabilities lies in its 6-oscillator LFO system. Navigate to LFO EDIT page to access these settings.
+
+### LFO Selection and Navigation
+- **Left Encoder Turn**: Select which LFO (1-6) when in selection mode
+- **Left Encoder Click**: Toggle between editing LFO selection vs. parameter editing
+- **Right Encoder Turn**: Navigate parameters (when not editing) OR edit values (when in edit mode)
+- **Right Encoder Click**: Enter/exit parameter value editing mode
+- **Right Encoder Hold**: Enter modulation editing mode (for advanced modulation routing)
+- **LFO Adjust Knob**: Direct access to the Adjust parameter for the currently selected LFO
+- **Delay Adjust Knob**: When editing, can set parameter values directly for some parameters
+
+### Core LFO Parameters
+
+#### Waveform (Sin/Tri/Saw/Ramp/Square/etc.)
+Base oscillator waveform:
+- **Sin**: Smooth sine wave
+- **Tri**: Triangle wave
+- **Saw**: Sawtooth (rising)
+- **Ramp**: Sawtooth (falling)  
+- **Square**: Square wave
+- **Noise**: Sample-and-hold noise
+- Additional variations and filtered versions available
+
+#### Mode (0-13)
+Fundamental LFO behavior:
+
+- **0 - Core**: Standard oscillator behavior
+- **1 - S+H**: Sample and hold on sync
+- **2 - T+H**: Track and hold mode
+- **3 - RandRst**: Random reset on trigger
+- **4 - RndShp**: Randomly change waveform  
+- **5 - Jitter**: Frequency jitter based on noise
+- **6 - Osc**: Basic oscillator mode
+- **7 - Glacier**: Very slow, divided rates
+- **8 - Clocks**: Clock-synchronized operation
+- **9 - Follow**: Envelope follower mode
+- **10 - Sidechain**: Ducking/sidechain mode
+- **11 - Envelope**: ADSR envelope mode
+- **12 - Turing**: Turing machine-style sequences
+- **13 - Raw**: Direct knob/CV control
+  
+
+#### Frequency Control
+
+**Multiply L Time (1-100)**: Primary frequency multiplier relative to left delay. Combined with global LFO rate and clock sync to determine final frequency.
+
+**Divide Numerator (1-1000)**: Frequency divider/multiplier.
+
+**Effective Rate Calculation:**
+```
+Final Rate = Base Rate × (Meta / Meta Divider) × Global Multiplier
+```
+
+#### Output Control
+
+**Polarity (+, +/-, -, -/+)**:
+- **+ (Unipolar Positive)**: 0V to +5V output
+- **+/- (Bipolar)**: -5V to +5V output  
+- **- (Unipolar Negative)**: -5V to 0V output
+- **-/+ (Inverted Bipolar)**: Inverted bipolar output
+
+**Offset (-2048 to +2048)**: DC offset added to LFO output before scaling.
+
+**Attenuate (1-100%)**: Output amplitude scaling.
+
+### Advanced Modulation
+
+#### Cross-Modulation
+**FM Source (0-10)**: Select which LFO provides frequency modulation.  
+**FM Amount (-100% to +100%)**: Frequency modulation depth.
+
+**AM Source (0-10)**: Select which LFO provides amplitude modulation.  
+**AM Amount (-100% to +100%)**: Amplitude modulation depth.
+
+#### Envelope and Timing
+**ADSR Controls** (when in Envelope mode):
+- **Attack (0-10s)**: Envelope attack time
+- **Decay (0-10s)**: Envelope decay time  
+- **Sustain (0-100%)**: Envelope sustain level
+- **Release (0-10s)**: Envelope release time
+
+**Phase Offset (0-360°)**: Phase relationship between LFOs.
+
+**Trigger/Reset Source**:
+- **0**: No external triggering
+- **1**: Gate Input 1
+- **2**: Gate Input 2
+
+#### End-of-Cycle Actions
+**EOC Action**: What happens when LFO completes a cycle:
+- **0**: Nothing
+- **1**: Reset target LFO
+- **2-4**: Add phase offset to target (90°, 180°, 270°)
+- **5**: Random waveform change
+- **6**: Scramble parameters
+
+**EOC Target**: Which LFO receives the end-of-cycle action.
+
+### Calibration and Fine-Tuning
+
+#### Adjust (0-100%)
+Multi-purpose parameter that changes function based on LFO mode:
+- **Standard modes**: Fine frequency control
+- **Noise modes**: Update rate/smoothing
+- **Jitter mode**: Jitter amount
+- **Follow mode**: Sensitivity  
+- **Raw mode**: Direct output level
+
+#### Calibration Parameters
+**Offset Cal (-2048 to +2047)**: Hardware calibration offset.  
+**Attenuate Cal (1-100%)**: Hardware calibration scaling.
+
+### LFO Routing and Outputs
+- **LFOs 1-4**: Available on dedicated CV outputs
+- **LFOs 5-6**: Available on auxiliary CV outputs  
+- **Internal Cross-Modulation**: LFOs can modulate each other via FM/AM sources
+- **External Patching**: CV outputs can be patched to CV inputs for delay parameter modulation
+
+---
+
+## Advanced Features
+
+### Advanced Features
+
+### Clock System and Synchronized Modulation
+
+One of Kali's most powerful features is its ability to synchronize LFO rates to delay times and musical timing. This creates musically coherent modulation that stays in sync with your material.
+
+#### Why Synchronized LFO Rates Matter
+
+**Musical Coherence**: When LFO rates are synchronized to delay times, modulation creates predictable, musical patterns rather than chaotic drift. For example, an LFO cycling once per delay repeat creates a regular pulse that enhances rhythm rather than obscuring it.
+
+**Harmonic Relationships**: LFO rates that are simple ratios of delay times (1:1, 1:2, 2:1, etc.) create harmonic relationships between the delay pattern and modulation. This is similar to how musical intervals work - simple ratios sound more consonant and musical.
+
+**Tempo-Locked Effects**: With clock sync, both delays and LFOs lock to a master clock (Internal, External CV, or MIDI), ensuring that modulation enhances the groove rather than fighting it.
+
+#### Practical Applications
+
+**Rhythmic Modulation**: Set an LFO to cycle at 1/4 note rate while your delay is set to 1/8 notes. The LFO creates a slower pulse that groups the faster delay repeats into musical phrases.
+
+**Polyrhythmic Patterns**: Use multiple LFOs at different ratios (1:1, 3:2, 4:3) to create complex polyrhythmic modulation that repeats over longer cycles, adding interest without losing musicality.
+
+**Harmonic Tremolo**: Modulate delay feedback at rates synchronized to the delay time to create harmonic tremolo effects that enhance rather than obscure the original timing.
+
+**Progressive Filtering**: Use tempo-synced LFOs to modulate filter cutoff in sync with delay repeats, creating evolving tonal patterns that follow musical structure.
+
+#### Traditional Approaches vs. Kali
+
+**Without Kali**, achieving synchronized LFO/delay relationships typically requires:
+- **Manual Calculation**: Computing LFO rates based on delay times and tempo by hand
+- **External Clock Division**: Using multiple clock dividers to generate different sync rates
+- **Separate LFO Modules**: Dedicating individual LFO modules for each modulation target
+- **Complex Patching**: Extensive cable management to route sync signals to multiple destinations
+- **Constant Adjustment**: Manually tweaking multiple modules when tempo changes
+
+**With Kali**, the system automatically:
+- **Calculates Ratios**: Maintains musical relationships between delay times and LFO rates
+- **Unified Sync**: All elements sync to a single master clock (internal/external/MIDI)
+- **Integrated Routing**: Built-in cross-modulation matrix between 6 LFOs
+- **Tempo Following**: Automatic adjustment when master tempo changes
+- **Visual Feedback**: Real-time display of sync relationships and timing
+
+#### Setting Up Synchronized Modulation
+
+1. **Choose Master Clock**: Set sync mode (Internal/External CV/MIDI) in global options
+2. **Set Base Timing**: Use Time L/R knobs to establish delay times relative to tempo
+3. **Configure LFO Rates**: Set LFO Meta/Meta Divider for musical ratios (1/4, 1/2, 2/1, etc.)
+4. **Patch Modulation**: Connect LFO CV outputs to CV inputs for delay parameter control
+5. **Fine-Tune Ratios**: Use LFO Adjust knobs for precise timing relationships
+
+This integrated approach transforms complex polyrhythmic modulation from a technical challenge into an intuitive creative tool.
+
+### MIDI Integration
+- **Full MIDI I/O**: Note on/off, CC, clock
+- **MIDI Clock Sync**: Lock to incoming MIDI clock
+- **CC Control**: Map MIDI controllers to parameters
+- **Clock Output**: Send MIDI clock downstream
+
+### Preset System
+- **Global Presets**: Save complete system state
+- **LFO Presets**: Individual LFO configurations  
+- **DSP Presets**: Delay algorithm settings
+- **Automatic Save**: Hold both encoders to save current state
+
+### Visual Feedback
+The OLED display provides real-time visualization:
+- **Waveform Display**: See LFO output in real-time
+- **Parameter Values**: Current settings with units
+- **VU Meters**: Simple input/output level monitoring for signal diagnosis
+- **Activity Indicators**: MIDI, sync, and trigger status
+- **Clock Information**: BPM, sync status, timing
+
+---
+
+## Tips and Techniques
+
+### Navigation Tips
+1. **Quick Parameter Access**: Use the LFO Adjust and Delay Adjust knobs for immediate parameter control without entering edit mode
+2. **Edit Mode**: Always click the right encoder to enter edit mode before trying to change parameter values with encoder turns
+3. **Page Navigation**: Left encoder always handles primary navigation between pages
+4. **Factory Reset**: On debug page, left encoder click performs factory reset
+5. **Save Settings**: Hold both encoders simultaneously to save current state
+6. **Encoder Direction**: If encoders feel backwards, enable "Invert Encoders" in global options
+   - **Symptoms of Reversed Encoders**: 
+     - Turning right moves parameters/pages to the left or decreases values when you expect them to increase
+     - Navigation feels counterintuitive - clockwise turns go backwards through menus
+     - Parameter values decrease when you turn clockwise expecting them to increase
+     - The encoder response feels "upside down" compared to typical knob behavior
+
+### Getting Started
+1. **Basic Delay**: Start with "Basic" mode, adjust Time L/R and Feedback knobs
+2. **Add Modulation**: Navigate to LFO 1 (left encoder turn), click left encoder to select parameter mode, set to "Core" mode with slow triangle wave
+3. **Route Modulation**: Use LFO CV outputs patched to CV inputs to modulate delay time or other parameters
+4. **Sync to Clock**: Set sync mode in options and use clock outputs to sync other gear
+5. **Edit Parameters**: Always click right encoder to enter edit mode before changing values
+
+### Creative Applications
+
+**Synchronized Modulation**: Set LFO rates to musical ratios of delay times for polyrhythmic patterns that stay musical and coherent.
+
+**Evolving Textures**: Combine multiple LFOs with cross-modulation and different rates.
+
+**Granular Soundscapes**: Explore Parvati and Granular modes with envelope following.
+
+**Harmonic Processing**: Use Resonator mode with MIDI note control for pitched delays.
+
+**Complex Modulation**: Patch LFO CV outputs to CV inputs for delay time modulation, or chain LFOs using FM/AM sources for non-repeating patterns.
+
+### Troubleshooting
+
+**No Output**: Check Mix knob, ensure it's not fully dry. Use VU meters to confirm signal presence.
+
+**Distorted Sound**: Reduce input gain or feedback amount. Monitor levels with VU meters.
+
+**LFOs Not Working**: Verify LFO rate isn't too slow, check output scaling.
+
+**Sync Issues**: Confirm sync mode matches your setup (Internal/External/MIDI).
+
+**Clock Problems**: Check PPQN settings match your system's expectations.
+
+---
+
+## Specifications
+
+- **Sample Rate**: 48kHz
+- **Bit Depth**: 32-bit floating point processing
+- **Maximum Delay**: 40 seconds (2M samples)
+- **CV Outputs**: 0-5V, 12-bit resolution, optimized for frequencies <1kHz
+- **LFO Range**: 0.001Hz to ~1kHz (aliasing above 1kHz on CV outputs)
+- **MIDI**: Full MIDI 1.0 specification
+- **Display**: 128x32 OLED with real-time graphics
+
+---
+
+*Firmware Version 2.0 - Built for Daisy Platform*
