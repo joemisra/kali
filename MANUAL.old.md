@@ -1,6 +1,24 @@
 # Kali Firmware Manual v2.0
 
+<<<<<<< Updated upstream
 Kali is a powerful delay and modulation instrument built for the Daisy platform. The v2.0 firmware keeps the deep feature set while adding a smoother on-ramp and a desktop OLED page renderer so you can study the interface before ever touching the hardware.
+=======
+---
+
+**⚠️ QUICK HELP: Factory Reset**  
+If Kali is behaving strangely on startup or won't boot properly:
+1. Power off completely
+2. Hold **both Gate Input buttons** (Gate In 1 + Gate In 2)
+3. Power on while holding both buttons
+4. Wait for "FACTORY RESET" message on screen
+5. Release buttons
+
+This restores all default settings. See [Factory Reset](#factory-reset) section for details.
+
+---
+
+## Overview
+>>>>>>> Stashed changes
 
 ## How to use this manual
 - **Start here.** The first sections are written as a guided tour to get sound moving immediately.
@@ -105,10 +123,48 @@ Input → Delay Processing → Filter → Output
 
 ---
 
+<<<<<<< Updated upstream
 ## Performance tips
 - Use **LFO Rate Multiplier** as a global “tempo nudge” without touching individual LFOs.
 - Keep **Enable Debug Info** on while learning; the extra pages show what the system is actually doing.
 - Store **Global Presets** for whole-rig states and **DSP/LFO Presets** when you only want to recall a subsection of the patch.
+=======
+## Factory Reset
+
+If Kali loads corrupted settings or appears to behave incorrectly on startup, you can perform a factory reset to restore all default settings.
+
+### How to Factory Reset
+
+1. **Power off** Kali completely
+2. **Hold down both Gate Input buttons** (Gate In 1 and Gate In 2)
+3. **Power on** Kali while continuing to hold both buttons
+4. The screen will display **"FACTORY RESET"** and **"Loading defaults..."**
+5. **Release the buttons** after seeing the message
+6. Kali will start with clean factory defaults, bypassing any saved presets or corrupted settings
+
+### What Gets Reset
+
+- All global options return to factory defaults
+- All LFO settings return to initial values
+- DSP parameters reset to defaults
+- Clock and sync settings reset
+- Saved preset selection is cleared
+
+### What Is Preserved
+
+- Your saved presets remain in memory (can be manually loaded later if needed)
+- Hardware calibration settings are maintained
+
+**Note:** Factory reset is especially useful if:
+- Kali won't start properly
+- Settings appear corrupted or cause unexpected behavior
+- You want a fresh start without manually resetting each parameter
+- A preset causes crashes or instability
+
+---
+
+## Complete Options Reference
+>>>>>>> Stashed changes
 
 ---
 
